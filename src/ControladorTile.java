@@ -13,6 +13,7 @@ public class ControladorTile {
 	public int numTileMap[][];
 
 	
+	
 	public ControladorTile(AdminitradorJuego aj) {
 		
 		this.aj = aj;
