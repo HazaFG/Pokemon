@@ -23,12 +23,19 @@ public class Juego extends JFrame implements Runnable {
     public Juego() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 800);
+        setResizable(false);
+        setLayout(null);
+        setLocationRelativeTo(null);
+
         setTitle("Pokemon Red");
         fondo = new JPanel();
         fondo.setBackground(new Color(45, 45, 45));
         fondo.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         setContentPane(fondo);
+
+        repaint();
+        revalidate();
     }
 
     public synchronized void iniciar(){

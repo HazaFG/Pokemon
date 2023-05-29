@@ -89,7 +89,7 @@ public class SplashMenu extends JDialog {
             atras.setContentAreaFilled(false);
             atras.setBorderPainted(true);
             atras.setFont(new Font("Tahoma", Font.PLAIN, 18));
-            atras.setBounds(199, 668, 403, 36);
+            atras.setBounds(199, 671, 403, 36);
 
             atras.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -133,15 +133,15 @@ public class SplashMenu extends JDialog {
 
                     BotonInvisible play = new BotonInvisible(" ");
                     play.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                    play.setBounds(208, 519, 403, 36);
+                    play.setBounds(199, 547, 403, 36);
 
                     BotonInvisible instrucciones = new BotonInvisible(" ");
                     instrucciones.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                    instrucciones.setBounds(208, 605, 403, 36);
+                    instrucciones.setBounds(199, 609, 403, 36);
 
                     BotonInvisible salir = new BotonInvisible(" ");
                     salir.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                    salir.setBounds(208, 684, 403, 36);
+                    salir.setBounds(199, 671, 403, 36);
 
                     getContentPane().removeAll();
                     getContentPane().add(play);
