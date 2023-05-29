@@ -47,6 +47,9 @@ public class ControladorTile {
 			
 			tile[5] = new Tile();
 			tile[5].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Agua.png"));
+			
+			tile[6] = new Tile();
+			tile[6].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Vallas.png"));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}	
