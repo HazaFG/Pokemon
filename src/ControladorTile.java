@@ -42,10 +42,10 @@ public class ControladorTile {
 			tile[3].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Tierra.png"));
 			
 			tile[4] = new Tile();
-			tile[4].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Arbusto.png"));
+			tile[4].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Hierva.png"));
 			
 			tile[5] = new Tile();
-			tile[5].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Lodo.png"));
+			tile[5].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Agua.png"));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}	
