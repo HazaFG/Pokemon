@@ -43,8 +43,8 @@ public class Jugador {
 	}
 	public void posicionBase() {
 		
-		MundoX = aj.tamPantalla * 23;
-		MundoY = aj.tamPantalla * 21;
+		MundoX = aj.tamPantalla * 26;
+		MundoY = aj.tamPantalla * 9;
 		velocidad = 3;
 		direccion = "abajo";
 		

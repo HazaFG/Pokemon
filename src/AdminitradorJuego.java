@@ -25,8 +25,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	
 	//CONFIGURACIÓN DE MUNDO
 	
-	public final int mundoFil = 50; //Las originales serán 83
-	public final int mundoCol = 50; // y 43
+	public final int mundoFil = 18; //Las originales serán 83
+	public final int mundoCol = 43; // y 43
 	public final int maximoAnchoMundo = mundoCol * tamPantalla;
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
