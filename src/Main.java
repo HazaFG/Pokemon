@@ -8,6 +8,12 @@ public class Main {
 		pika.setNombre("Manolo");
 		pika.mostrarDatos();
 		
+		Poliwag poli = new Poliwag();
+		poli.setNombre("Renacuao");
+		poli.mostrarDatos();
+		
+		System.out.println("daño: "+pika.movimientos[0].calcularDañoFisico(pika, poli));
+		
 	}
 
 }

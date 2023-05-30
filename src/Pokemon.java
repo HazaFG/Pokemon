@@ -4,7 +4,7 @@ abstract class Pokemon {
 
 	String nombre;
 	
-	String Tipo;
+	String tipo;
 	
 	//estadisticas base
 	/**
@@ -17,13 +17,15 @@ abstract class Pokemon {
 	 * la naturaleza se omite para el calculo de las estadisticas
 	 */
 	
-	int lvl = 100;
+	int lvl = 5;
 	int[] IV = new int[6]; //genes
 	int[] EV = new int[6]; //puntos de esfuerzo
 	
 	int[] statsBase = new int[6];
 
-	double[] stats = new double[6];
+	int[] stats = new int[6];
+	
+	Movimientos[] movimientos = new Movimientos[4];
 	
 	public Pokemon(int puntos_salud,
 				   int ataque,
@@ -35,7 +37,7 @@ abstract class Pokemon {
 				   String tipo) {
 		
 		this.nombre = nombre;
-		this.Tipo   = tipo;
+		this.tipo   = tipo;
 		
 		statsBase[0] = puntos_salud;
 		statsBase[1] = ataque;
@@ -109,6 +111,6 @@ abstract class Pokemon {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 }
 
