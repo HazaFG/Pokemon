@@ -1,7 +1,12 @@
-public class Main {
-    public static void main(String[] args) {
+import javax.swing.JFrame;
 
-        SplashMenu splash = new SplashMenu();
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		SplashMenu splash = new SplashMenu();
         splash.setVisible(true);
-    }
+		
+	}
 }

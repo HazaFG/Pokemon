@@ -8,6 +8,8 @@ public class SplashMenu extends JDialog {
     private JProgressBar barra;
     private JLabel l2;
 
+    AdminitradorJuego aj = new AdminitradorJuego();
+
     //PROPIEDADES DIALOOGO
     public SplashMenu() {
         inicio();
@@ -155,10 +157,21 @@ public class SplashMenu extends JDialog {
 
                     play.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
+                        	
+                        	JFrame ventana = new JFrame();
+                    		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    		ventana.setTitle("BomberSmite");
+                    		
+                        	AdminitradorJuego aJ = new AdminitradorJuego();
+                    		ventana.setSize(1015, 540);
+                    		ventana.add(aJ);
+                    		
+                    		aJ.iniciarHiloJuego();
+                    		
+                    		ventana.setLocationRelativeTo(null);
+                    		ventana.setVisible(true);
+                    		
                             dispose();
-                            Juego juego = new Juego();
-                            juego.setVisible(true);
-                            juego.iniciar();
                         }
                     });
 
