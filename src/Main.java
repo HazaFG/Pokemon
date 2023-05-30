@@ -12,7 +12,8 @@ public class Main {
 		poli.setNombre("Renacuao");
 		poli.mostrarDatos();
 		
-		System.out.println("daño: "+pika.movimientos[0].calcularDañoFisico(pika, poli));
+		System.out.println("daño: "+pika.movimientos[0].calcularDaño(pika, poli));
+		System.out.println("daño: "+pika.movimientos[1].calcularDaño(pika, poli));
 		
 	}
 
