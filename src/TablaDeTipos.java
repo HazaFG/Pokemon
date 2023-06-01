@@ -15,10 +15,10 @@ public interface TablaDeTipos {
 			}
 			
 		}else {
-			System.out.println("Este tipo no existe");
+			//System.out.println("Efectividad neutra");
 		}
 		
-		System.out.println("Efectividad: "+efectividad);
+//		System.out.println("Efectividad: "+efectividad);
 		
 //		if(ataque.tipo.equals("Electrico") && defensor.tipo.equals("Agua")) {
 //			efectividad = 2;

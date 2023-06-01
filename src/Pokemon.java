@@ -18,6 +18,9 @@ abstract class Pokemon {
 	 */
 	
 	int lvl = 5;
+	
+	int maxPV;
+	
 	int[] IV = new int[6]; //genes
 	int[] EV = new int[6]; //puntos de esfuerzo
 	
@@ -47,8 +50,10 @@ abstract class Pokemon {
 		statsBase[5] = velocidad;
 		
 		calcularIV();
-		calcularEV();
+		//calcularEV();
 		calcularStats();
+		
+		maxPV = stats[0];
 		
 	}
 	
@@ -104,8 +109,9 @@ abstract class Pokemon {
 		}
 	}
 	
-	public void movimiento() {
-		
+	public int recibirDaño(int daño) {
+		stats[0] = stats[0] - daño;
+		return stats[0];
 	}
 	
 	public void setNombre(String nombre) {
