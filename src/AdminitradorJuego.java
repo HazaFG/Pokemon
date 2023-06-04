@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +31,6 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAnchoMundo = mundoCol * tamPantalla;
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
-	
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles();
 	Thread hiloJuego;
@@ -38,25 +38,20 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	Jugador jugador = new Jugador(this, teclas);
 	
 	public AdminitradorJuego() {
-		
 		this.setSize(anchoPantalla, alturaPantalla);
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(teclas);
 		this.setFocusable(true);
-		
-
 	}
 	
 	public void iniciarHiloJuego() {
-		
 		hiloJuego = new Thread(this);
 		hiloJuego.start();
 	}
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		//CONTROL DE FPSSSSSSSSSSS 1
 				double intervaloDibujado = 1000000000/FPS;
 				double tiempoDibujado = System.nanoTime() + intervaloDibujado;
@@ -89,25 +84,17 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 					e.printStackTrace();
 				}
 			}
-		
 	}
 	
 	public void actualizar() {
-		
 		jugador.actualizar();
-		
 	}
 	
 	public void paintComponent(Graphics g) {
-		
 		super.paintComponent(g);
-		
 		Graphics2D g2 = (Graphics2D)g;
-		
 		ControladorT.dibujar(g2);
-		
 		jugador.dibujar(g2);
-		
 		g2.dispose();
 	}
 }
