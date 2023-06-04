@@ -1,12 +1,11 @@
-import javax.swing.JFrame;
+package main;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		SplashMenu splash = new SplashMenu();
-        splash.setVisible(true);
-		
+
+		System.out.println("triste");
 	}
+
 }
