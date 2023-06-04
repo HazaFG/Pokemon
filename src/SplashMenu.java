@@ -8,8 +8,6 @@ public class SplashMenu extends JDialog {
     private JProgressBar barra;
     private JLabel l2;
 
-    AdminitradorJuego aj = new AdminitradorJuego();
-
     //PROPIEDADES DIALOOGO
     public SplashMenu() {
         inicio();
@@ -91,7 +89,7 @@ public class SplashMenu extends JDialog {
             atras.setContentAreaFilled(false);
             atras.setBorderPainted(true);
             atras.setFont(new Font("Tahoma", Font.PLAIN, 18));
-            atras.setBounds(199, 671, 403, 36);
+            atras.setBounds(199, 668, 403, 36);
 
             atras.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -135,15 +133,15 @@ public class SplashMenu extends JDialog {
 
                     BotonInvisible play = new BotonInvisible(" ");
                     play.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                    play.setBounds(199, 547, 403, 36);
+                    play.setBounds(208, 519, 403, 36);
 
                     BotonInvisible instrucciones = new BotonInvisible(" ");
                     instrucciones.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                    instrucciones.setBounds(199, 609, 403, 36);
+                    instrucciones.setBounds(208, 605, 403, 36);
 
                     BotonInvisible salir = new BotonInvisible(" ");
                     salir.setFont(new Font("Tahoma", Font.PLAIN, 18));
-                    salir.setBounds(199, 671, 403, 36);
+                    salir.setBounds(208, 684, 403, 36);
 
                     getContentPane().removeAll();
                     getContentPane().add(play);
@@ -157,21 +155,10 @@ public class SplashMenu extends JDialog {
 
                     play.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                        	
-                        	JFrame ventana = new JFrame();
-                    		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    		ventana.setTitle("BomberSmite");
-                    		
-                        	AdminitradorJuego aJ = new AdminitradorJuego();
-                    		ventana.setSize(1015, 540);
-                    		ventana.add(aJ);
-                    		
-                    		aJ.iniciarHiloJuego();
-                    		
-                    		ventana.setLocationRelativeTo(null);
-                    		ventana.setVisible(true);
-                    		
                             dispose();
+                            Juego juego = new Juego();
+                            juego.setVisible(true);
+                            juego.iniciar();
                         }
                     });
 
