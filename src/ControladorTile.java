@@ -18,7 +18,7 @@ public class ControladorTile {
 		
 		this.aj = aj;
 		
-		tile = new Tile[10];
+		tile = new Tile[50];
 		numTileMap = new int[aj.mundoCol][aj.mundoFil];
 		
 		cargarTile();
@@ -48,11 +48,57 @@ public class ControladorTile {
 			
 			tile[5] = new Tile();
 			tile[5].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Agua.png"));
-			tile[5].colision = true;
 			
 			tile[6] = new Tile();
 			tile[6].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Vallas.png"));
 			tile[6].colision = true;
+			
+			tile[7] = new Tile();
+			tile[7].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/roca.png"));
+			
+			tile[8] = new Tile();
+			tile[8].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/rocaEsquinaSuperiorDer.png"));
+			tile[8].colision = true;
+			
+			tile[9] = new Tile();
+			tile[9].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/palo.png"));
+			tile[9].colision = true;
+			
+			tile[10] = new Tile();
+			tile[10].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/e.png"));
+			tile[10].colision = true;
+			
+			tile[11] = new Tile();
+			tile[11].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/s.png"));
+			tile[11].colision = true;
+			
+			tile[12] = new Tile();
+			tile[12].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/q.png"));
+			tile[12].colision = true;
+			
+			tile[13] = new Tile();
+			tile[13].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/i.png"));
+			tile[13].colision = true;
+			
+			tile[14] = new Tile();
+			tile[14].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/n.png"));
+			tile[14].colision = true;
+			
+			tile[15] = new Tile();
+			tile[15].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/a.png"));
+			tile[15].colision = true;
+			
+			tile[16] = new Tile();
+			tile[16].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/d.png"));
+			tile[16].colision = true;
+			
+			tile[17] = new Tile();
+			tile[17].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/ee.png"));
+			tile[17].colision = true;
+			
+			
+			
+				
 		}catch(IOException e) {
 			e.printStackTrace();
 		}	
