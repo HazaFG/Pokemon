@@ -157,10 +157,6 @@ public class SplashMenu extends JDialog {
 
                     play.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-                        	
-=======
->>>>>>> main
                         	JFrame ventana = new JFrame();
                     		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     		ventana.setTitle("BomberSmite");
@@ -173,10 +169,6 @@ public class SplashMenu extends JDialog {
                     		
                     		ventana.setLocationRelativeTo(null);
                     		ventana.setVisible(true);
-<<<<<<< HEAD
-                    		
-=======
->>>>>>> main
                             dispose();
                         }
                     });
