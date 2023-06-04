@@ -44,12 +44,15 @@ public class ControladorTile {
 			
 			tile[4] = new Tile();
 			tile[4].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Hierva.png"));
+			tile[4].colisionHierva = true;
 			
 			tile[5] = new Tile();
 			tile[5].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Agua.png"));
+			tile[5].colision = true;
 			
 			tile[6] = new Tile();
 			tile[6].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Vallas.png"));
+			tile[6].colision = true;
 		}catch(IOException e) {
 			e.printStackTrace();
 		}	

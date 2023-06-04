@@ -18,9 +18,12 @@ public class Jugador {
 	public String direccion;
 	public Rectangle hitBox;
 	public boolean ColisiOn = false;
+	public boolean colisionHierva = false;
 	public int hitBoxX,hitBoxY;
 	
 	public BufferedImage arr_1,arr_2,abj_1,abj_2,der_1,der_2,izq_1,izq_2;
+	public int contadorSprite = 0;
+	public int numeroSprite = 1;
 	
 	AdminitradorJuego aj;
 	Controles teclas;
@@ -83,7 +86,19 @@ public class Jugador {
 				direccion = "derecha";
 			}
 			
+			contadorSprite++;
+			if (contadorSprite >10) {
+				if (numeroSprite == 1) {
+					numeroSprite =2;
+				}
+				else if (numeroSprite == 2) {
+					numeroSprite =1;
+				}
+				contadorSprite = 0;
+			}
+			
 			ColisiOn = false;
+			colisionHierva = false;
 			aj.cColision.revisarTile(this);
 			
 			if(ColisiOn == false) {
@@ -104,6 +119,10 @@ public class Jugador {
 				}
 			}
 			
+			if (colisionHierva == true) {
+				System.out.println("Adentro de una hierva");
+			}
+			
 		}
 	}
 	
@@ -113,16 +132,36 @@ public class Jugador {
 		
 		switch (direccion) {
 		case "arriba":
-			imagen = arr_1;
+			if (numeroSprite == 1) {
+				imagen = arr_1;
+			}
+			if (numeroSprite == 2) {
+				imagen = arr_2;
+			}
 			break;
 		case "abajo":
-			imagen = abj_1;
+			if (numeroSprite == 1) {
+				imagen = abj_1;				
+			}
+			if (numeroSprite == 2) {
+				imagen = abj_2;				
+			}
 			break;
 		case "derecha":
-			imagen = der_1;
+			if (numeroSprite == 1) {
+				imagen = der_1;
+			}
+			if (numeroSprite == 2) {
+				imagen = der_2;
+			}
 			break;
 		case "izquierda":
-			imagen = izq_1;
+			if (numeroSprite == 1) {
+				imagen = izq_1;
+			}
+			if (numeroSprite == 2) {
+				imagen = izq_2;
+			}
 			break;
 		}
 		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 32, 32, null);
