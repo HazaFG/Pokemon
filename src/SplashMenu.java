@@ -174,8 +174,11 @@ public class SplashMenu extends JDialog {
                     		ventana.setTitle("HOLA ZUMAYA");
                     		
                         	AdminitradorJuego aJ = new AdminitradorJuego();
-                    		ventana.setSize(1015, 540);
+                    		ventana.setSize(800, 800);
                     		ventana.add(aJ);
+                    		ventana.setLocationRelativeTo(null);
+                    		ventana.getContentPane().setLayout(null);
+                    		ventana.setUndecorated(true);
                     		
                     		aJ.iniciarHiloJuego();
                     		

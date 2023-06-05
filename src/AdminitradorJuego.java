@@ -41,7 +41,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	Jugador jugador = new Jugador(this, teclas,combate);
 	
 	public AdminitradorJuego() {
-		this.setSize(anchoPantalla, alturaPantalla);
+		this.setSize(800, 800);
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(teclas);
