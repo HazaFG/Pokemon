@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 public class Pikachu extends Pokemon{
 	
 	//delante = ImageIO.read(getClass().getResourceAsStream("/Pokemon/pikachuDelante"));
-	//atras   = ImageIO.read(getClass().getResourceAsStream("/Pokemon/pikachuDelante"));
+	//atras   = ImageIO.read(getClass().getResourceAsStream("/Pokemon/pikachuAtras"));
 	
 	public Pikachu() {
 		super(35, 55, 30, 50, 40, 90, "Pikachu", "Electrico");
@@ -18,15 +18,7 @@ public class Pikachu extends Pokemon{
 		this.movimientos[1] = impactrueno;
 		this.movimientos[2] = bolaSombra;
 		this.movimientos[3] = ondaTrueno;
-		
-//		try {
-//			this.delante = ImageIO.read(getClass().getResourceAsStream("/Pokemon/pokachuDelante"));
-//			this.atras = ImageIO.read(getClass().getResourceAsStream("/Pokemon/pokachuAtras"));
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 	}
 	
 	public void pikachu() {

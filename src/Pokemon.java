@@ -7,17 +7,6 @@ abstract class Pokemon {
 	
 	String tipo;
 	
-	//estadisticas base
-	/**
-	 * Las estadísticas base son el parámetro principal para determinar el valor de una estadística para un Pokémon a determinado nivel, esto se calcula según la siguiente ecuación:
-	 *
-	 * PS: 10 + { Nivel / 100 x [ (Stat Base x 2) + IV + PE ] } + Nivel
-	 *
-	 * Resto de las estadísticas: ( 5 + { Nivel / 100 x [ (Stat Base x 2) + IV + PE ] } ) x Naturaleza
-	 * 
-	 * la naturaleza se omite para el calculo de las estadisticas
-	 */
-	
 	BufferedImage delante, atras;
 	
 	int lvl = 5;
@@ -73,6 +62,18 @@ abstract class Pokemon {
 			System.out.println(stats[i]);
 		}
 	}
+	
+	
+	//estadisticas base
+	/**
+	 * Las estadísticas base son el parámetro principal para determinar el valor de una estadística para un Pokémon a determinado nivel, esto se calcula según la siguiente ecuación:
+	 *
+	 * PS: 10 + { Nivel / 100 x [ (Stat Base x 2) + IV + PE ] } + Nivel
+	 *
+	 * Resto de las estadísticas: ( 5 + { Nivel / 100 x [ (Stat Base x 2) + IV + PE ] } ) x Naturaleza
+	 * 
+	 * la naturaleza se omite para el calculo de las estadisticas
+	 */
 	
 	public void calcularStats() {
 		stats[0] = (10 + ( lvl / 100 * (statsBase[0] * 2) + IV[0] + EV[0])) + lvl;
