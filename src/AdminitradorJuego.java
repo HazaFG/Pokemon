@@ -31,11 +31,14 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAnchoMundo = mundoCol * tamPantalla;
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
+	public boolean estadoCombate = false;
+	
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles();
+	Combate combate = new Combate();
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
-	Jugador jugador = new Jugador(this, teclas);
+	Jugador jugador = new Jugador(this, teclas,combate);
 	
 	public AdminitradorJuego() {
 		this.setSize(anchoPantalla, alturaPantalla);
@@ -43,6 +46,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 		this.setDoubleBuffered(true);
 		this.addKeyListener(teclas);
 		this.setFocusable(true);
+
 	}
 	
 	public void iniciarHiloJuego() {
@@ -93,8 +97,12 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		ControladorT.dibujar(g2);
-		jugador.dibujar(g2);
-		g2.dispose();
+		if (estadoCombate) {
+			combate.dibujar(g2);			
+		}else {
+			ControladorT.dibujar(g2);
+			jugador.dibujar(g2);
+		}
+		g2.dispose();			
 	}
 }

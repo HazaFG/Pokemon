@@ -7,8 +7,9 @@ public class SplashMenu extends JDialog {
 
     private JProgressBar barra;
     private JLabel l2;
+    public JFrame ventana = new JFrame();
 
-    AdminitradorJuego aj = new AdminitradorJuego();
+	AdminitradorJuego aj = new AdminitradorJuego();
 
     //PROPIEDADES DIALOOGO
     public SplashMenu() {
@@ -102,6 +103,17 @@ public class SplashMenu extends JDialog {
             add(atras);
         }
     }
+    
+    //CAMBIAR DE PANTALLA
+    public void cambioPantalla (int pantalla){
+    	if (pantalla == 1) {
+    		ventana.setVisible(false);    		
+    	}
+    	if (pantalla == 2) {
+    		ventana.setVisible(true);    		
+    	}
+    	
+    }
 
     private void inicioHilo() {
         Thread hilo = new Thread(new Runnable() {
@@ -158,9 +170,8 @@ public class SplashMenu extends JDialog {
                     play.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                         	
-                        	JFrame ventana = new JFrame();
                     		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    		ventana.setTitle("BomberSmite");
+                    		ventana.setTitle("HOLA ZUMAYA");
                     		
                         	AdminitradorJuego aJ = new AdminitradorJuego();
                     		ventana.setSize(1015, 540);
@@ -197,5 +208,9 @@ public class SplashMenu extends JDialog {
         });
         hilo.start();
     }
+    
+    public void setVentana(JFrame ventana) {
+		this.ventana = ventana;
+	}
 
 }

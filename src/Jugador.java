@@ -21,17 +21,22 @@ public class Jugador {
 	public boolean colisionHierva = false;
 	public int hitBoxX,hitBoxY;
 	
+	
+	
 	public BufferedImage arr_1,arr_2,abj_1,abj_2,der_1,der_2,izq_1,izq_2;
 	public int contadorSprite = 0;
 	public int numeroSprite = 1;
 	
 	AdminitradorJuego aj;
 	Controles teclas;
+	SplashMenu splashM;
+	Combate combate; 
 	
-	public Jugador(AdminitradorJuego aj, Controles teclas) {
+	public Jugador(AdminitradorJuego aj, Controles teclas,Combate combate) {
 		
 		this.aj = aj;
 		this.teclas = teclas;
+		this.combate = combate;
 		
 		pantallaX = aj.anchoPantalla / 2;
 		pantallaY = aj.alturaPantalla  / 2;
@@ -47,7 +52,7 @@ public class Jugador {
 	public void posicionBase() {
 		
 		MundoX = aj.tamPantalla * 30;
-		MundoY = aj.tamPantalla * 10;
+		MundoY = aj.tamPantalla * 40;
 		velocidad = 3;
 		direccion = "abajo";
 		
@@ -69,7 +74,8 @@ public class Jugador {
 	}
 	
 	public void actualizar() {
-		
+		if (aj.estadoCombate == false) {
+			
 		if(teclas.arriba == true || teclas.abajo == true ||
 				teclas.izqui == true || teclas.dere == true) {
 			
@@ -120,9 +126,10 @@ public class Jugador {
 			}
 			
 			if (colisionHierva == true) {
-				System.out.println("Adentro de una hierva");
+				combate.comenzarCombate();
+				aj.estadoCombate = true;
 			}
-			
+		}
 		}
 	}
 	
