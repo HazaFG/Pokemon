@@ -48,6 +48,9 @@ public void dibujar(Graphics2D g2) {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
 			g2.drawImage(imagen, 0, 0, 800, 800, null);
 			
+			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque.png"));
+			g2.drawImage(imagen, 0, 580, 800, 220, null);
+			
 	        Font font = new Font("Copperplate Gothic Bold", Font.BOLD, fontSize);
 	        g2.setFont(font);
 	        g2.setColor(Color.DARK_GRAY);
