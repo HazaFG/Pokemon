@@ -6,8 +6,8 @@ public class MovimientoEstado extends Movimientos{
 	 * 
 	 */
 	
-	public MovimientoEstado(int precision, int PP, String tipo) {
-		super(0, precision, PP, tipo);
+	public MovimientoEstado(int precision, int PP, String tipo, String nombre) {
+		super(0, precision, PP, tipo, nombre);
 		// TODO Auto-generated constructor stub
 	}
 

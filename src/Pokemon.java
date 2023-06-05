@@ -1,3 +1,4 @@
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 abstract class Pokemon {
@@ -16,6 +17,8 @@ abstract class Pokemon {
 	 * 
 	 * la naturaleza se omite para el calculo de las estadisticas
 	 */
+	
+	BufferedImage delante, atras;
 	
 	int lvl = 5;
 	

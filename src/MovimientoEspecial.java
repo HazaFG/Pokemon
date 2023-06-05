@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class MovimientoEspecial extends Movimientos{
 
-	public MovimientoEspecial(int potencia, int precision, int PP, String tipo) {
-		super(potencia, precision, PP, tipo);
+	public MovimientoEspecial(int potencia, int precision, int PP, String tipo, String nombre) {
+		super(potencia, precision, PP, tipo, nombre);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -16,7 +16,7 @@ public class MovimientoEspecial extends Movimientos{
 		double efectividad = TablaDeTipos.calcularEfectividad(this, defensor);
 		int variacion = random.nextInt(16)+85;
 
-		daño = (int) (0.01 * efectividad * variacion * (((0.2 * atacante.lvl + 1) * atacante.stats[3] * potencia) / (25 * defensor.stats[4])) + 2);
+		daño = (int) (0.01 * efectividad * variacion * ((((0.2 * atacante.lvl + 1) * atacante.stats[3] * potencia) / (25 * defensor.stats[4])) + 2));
 
 		return daño;
 	}
