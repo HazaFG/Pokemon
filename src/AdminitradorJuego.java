@@ -32,10 +32,11 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
 	public boolean estadoCombate = false;
+	JButton btn = new JButton();
 	
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles();
-	Combate combate = new Combate();
+	Combate combate = new Combate(this);
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
 	Jugador jugador = new Jugador(this, teclas,combate);

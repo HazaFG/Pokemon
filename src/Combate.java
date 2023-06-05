@@ -1,13 +1,18 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class Combate {
+	
+	AdminitradorJuego aj;
 
 	Graphics2D g2;
 	
@@ -16,8 +21,8 @@ public class Combate {
 	int vidaMax = 10;
 	int vida = 100;
 	
-	public Combate() {
-		
+	public Combate(AdminitradorJuego aj) {
+		this.aj = aj;
 	}
 	
 	public void inicializarValores(String nombrePokemonAliado, int vidaMax, int vida) {
@@ -36,6 +41,8 @@ public class Combate {
 
 public void dibujar(Graphics2D g2) {
 		BufferedImage imagen;
+		
+		
 		int fontSize = 18;
 		try {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
@@ -55,11 +62,14 @@ public void dibujar(Graphics2D g2) {
 	        g2.setFont(font2);
 			g2.drawString(""+nivelPokemonAliado,570,550);
 			g2.drawString(""+nivelPokemonEnemigo,125,275);
+			
+			
+            
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
+	}
 
-}
 }
