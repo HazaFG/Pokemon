@@ -133,6 +133,9 @@ public class Jugador {
 				combate.inicializarValores();
 				//combate.comenzarCombate();
 				aj.estadoCombate = true;
+//				if(combate.combate == true) {
+//					combate.comenzarCombate();
+//				}
 			}
 		}
 		}
