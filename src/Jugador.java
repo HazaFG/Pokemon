@@ -21,7 +21,7 @@ public class Jugador {
 	public boolean colisionHierva = false;
 	public int hitBoxX,hitBoxY;
 	
-	
+	Pokemon[] equipo = new Pokemon[6];
 	
 	public BufferedImage arr_1,arr_2,abj_1,abj_2,der_1,der_2,izq_1,izq_2;
 	public int contadorSprite = 0;
@@ -45,6 +45,10 @@ public class Jugador {
 		
 		hitBoxX = hitBox.x;
 		hitBoxY = hitBox.y;
+		
+		//Pikachu pika = new Pikachu();
+		Snorlax snor = new Snorlax();
+		equipo[0] = snor;
 		
 		posicionBase();
 		getImagenJugador();
@@ -126,7 +130,12 @@ public class Jugador {
 			}
 			
 			if (colisionHierva == true) {
+				combate.inicializarValores();
+				//combate.comenzarCombate();
 				aj.estadoCombate = true;
+//				if(combate.combate == true) {
+//					combate.comenzarCombate();
+//				}
 			}
 		}
 		}
