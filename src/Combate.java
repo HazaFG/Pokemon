@@ -16,7 +16,8 @@ public class Combate {
 
 	Graphics2D g2;
 	
-	String nombrePokemonAliado = "Growlithe", nombrePokemonEnemigo = "Growlithe";
+	BufferedImage imagen,imagenPokemonAliado,imagenPokemonEnemigo;
+	String nombrePokemonAliado = "Poliwag", nombrePokemonEnemigo = "Poliwag";
 	int nivelPokemonAliado = 1,nivelPokemonEnemigo = 1;
 	int vidaMax = 10;
 	int vida = 100;
@@ -25,10 +26,28 @@ public class Combate {
 		this.aj = aj;
 	}
 	
-	public void inicializarValores(String nombrePokemonAliado, int vidaMax, int vida) {
+	//Aquí se escoge que pokemon hay de aliado y de enemigo
+	public void iniciarPokemon(int pokemonAliado, int pokemonEnemigo) {
+		switch (pokemonAliado) {
+		
+		}
+		switch (pokemonEnemigo) {
+		
+		}
+	}
+	
+	public void inicializarValores(String nombrePokemonAliado,String nombrePokemonEnemigo, int vidaMax, int vida) {
 		this.nombrePokemonAliado = nombrePokemonAliado;
 		this.vidaMax = vidaMax;
 		this.vida = vida;
+
+//			try {
+//				imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonAliado+"_aliado.png"));
+//				imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonEnemigo+"_enemigo.png"));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 	}
 	
 	public void cambiarAString() {
@@ -40,7 +59,6 @@ public class Combate {
 	}
 
 public void dibujar(Graphics2D g2) {
-		BufferedImage imagen;
 		
 		
 		int fontSize = 18;
@@ -48,8 +66,17 @@ public void dibujar(Graphics2D g2) {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
 			g2.drawImage(imagen, 0, 0, 800, 800, null);
 			
+			
+			imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonAliado+"_aliado.png"));
+			imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonEnemigo+"_enemigo.png"));
+			
+			g2.drawImage(imagenPokemonAliado, 100, 380, 200, 200, null);
+			
+			g2.drawImage(imagenPokemonEnemigo, 500, 300, 150, 150, null);
+			
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque.png"));
 			g2.drawImage(imagen, 0, 580, 800, 220, null);
+			
 			
 	        Font font = new Font("Copperplate Gothic Bold", Font.BOLD, fontSize);
 	        g2.setFont(font);
