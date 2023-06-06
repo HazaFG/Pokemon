@@ -126,7 +126,6 @@ public class Jugador {
 			}
 			
 			if (colisionHierva == true) {
-				combate.comenzarCombate();
 				aj.estadoCombate = true;
 			}
 		}
