@@ -21,7 +21,7 @@ public class Combate {
 	
 	BufferedImage imagen,imagenPokemonAliado,imagenPokemonEnemigo;
 	String nombreAliado,
-			nombrePokemonEnemigo = "Poliwag";
+			nombreEnemigo;
 	
 	int nivelPokemonAliado = 1,nivelPokemonEnemigo = 1;
 	int vidaMax;
@@ -42,8 +42,10 @@ public class Combate {
 	
 	boolean combate = false;
 	
-	public Combate(AdminitradorJuego aj) {
+	public Combate(AdminitradorJuego aj, Pokemon enemigo) {
 		this.aj = aj;
+		this.enemigo = enemigo;
+		this.nombreEnemigo = enemigo.nombre;
 	}
 	
 	//Aquí se escoge que pokemon hay de aliado y de enemigo
@@ -68,9 +70,7 @@ public class Combate {
 			maxPPMovimientosAliado[i] = aliado.movimientos[i].PP;
 			PPMovimientosAliado[i] = aliado.movimientos[i].PP;
 		}
-		
-		Poliwag poli = new Poliwag();
-		this.enemigo = poli;
+
 //			try {
 //				imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonAliado+"_aliado.png"));
 //				imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonEnemigo+"_enemigo.png"));
@@ -100,7 +100,7 @@ public void dibujar(Graphics2D g2) {
 			
 			
 			imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombreAliado+"_aliado.png"));
-			imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonEnemigo+"_enemigo.png"));
+			imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombreEnemigo+"_enemigo.png"));
 			
 			g2.drawImage(imagenPokemonAliado, 100, 380, 200, 200, null);
 			
@@ -240,7 +240,7 @@ public void dibujar(Graphics2D g2) {
 			g2.drawString(""+vida,705,550);
 			g2.drawString(nombreAliado,510,530);
 			
-			g2.drawString(nombrePokemonEnemigo,60,255);
+			g2.drawString(nombreEnemigo,60,255);
 			
 			Font font2 = new Font("Copperplate Gothic Bold", Font.BOLD, fontSize+4);
 	        g2.setFont(font2);
