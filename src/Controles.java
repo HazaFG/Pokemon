@@ -3,7 +3,7 @@ import java.awt.event.KeyListener;
 
 public class Controles implements KeyListener{
 	
-	public boolean arriba, abajo, izqui, dere, aceptar, cancelar, esc;
+	public boolean arriba, abajo, izqui, dere, aceptar, cancelar, espacio, esc;
 	AdminitradorJuego aj;
 	
 	public Controles(AdminitradorJuego aj) {
@@ -43,6 +43,9 @@ public class Controles implements KeyListener{
 		if(code == KeyEvent.VK_O) {
 			cancelar = true;
 		}
+		if(code == KeyEvent.VK_SPACE) {
+			espacio = true;
+		}
 		if(code == KeyEvent.VK_ESCAPE) {
 			esc = true;
 		}
@@ -69,11 +72,15 @@ public class Controles implements KeyListener{
 			dere = false;
 
 		}
-//		if(code == KeyEvent.VK_I && !aj.stopCombate) {
-//			aceptar = false;
-//		}
+		if(code == KeyEvent.VK_I && !aj.stopCombate) {
+			aceptar = false;
+		}
 		if(code == KeyEvent.VK_O) {
 			cancelar = false;
+		}
+		if(code == KeyEvent.VK_SPACE) {
+
+			espacio = false;
 		}
 		if(code == KeyEvent.VK_ESCAPE) {
 			esc = false;

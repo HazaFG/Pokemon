@@ -37,7 +37,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles(this);
-	Combate combate = new Combate(this);
+	Combate combate = new Combate(this, new Pikachu());
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
 	Jugador jugador = new Jugador(this, teclas,combate);
