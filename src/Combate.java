@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 public class Combate {
 	
 	AdminitradorJuego aj;
+	HiloCombate hiloCombate;
 
 	Graphics2D g2;
 	
@@ -27,8 +28,16 @@ public class Combate {
 	int vida;
 	
 	int seleccion = 1;
+	int seleccionAtaque = 1;
 	
 	Pokemon aliado;
+	
+	String[] nombreMovimientosAliado = new String[4];
+	
+	int[] maxPPMovimientosAliado = new int[4];
+	
+	int[] PPMovimientosAliado = new int[4];
+	
 	Pokemon enemigo;
 	
 	boolean combate = false;
@@ -54,6 +63,12 @@ public class Combate {
 		this.nivelPokemonAliado = aj.jugador.equipo[0].lvl;
 		this.aliado = aj.jugador.equipo[0];
 		
+		for (int i = 0; i < 4; i++) {
+			nombreMovimientosAliado[i] = aliado.movimientos[i].nombre;
+			maxPPMovimientosAliado[i] = aliado.movimientos[i].PP;
+			PPMovimientosAliado[i] = aliado.movimientos[i].PP;
+		}
+		
 		Poliwag poli = new Poliwag();
 		this.enemigo = poli;
 //			try {
@@ -77,6 +92,8 @@ public void dibujar(Graphics2D g2) {
 		inicializarValores();
 		
 		int fontSize = 18;
+		hiloCombate = new HiloCombate(aj);
+		
 		try {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
 			g2.drawImage(imagen, 0, 0, 800, 800, null);
@@ -92,16 +109,99 @@ public void dibujar(Graphics2D g2) {
 			switch(seleccion) {
 			case 1:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque.png"));
-				if (aj.teclas.abajo == true){
+				if (aj.teclas.abajo == true && aj.teclas.aceptar == false){
 					seleccion = 3;
-				}else if(aj.teclas.dere == true) {
+				}else if(aj.teclas.dere == true && aj.teclas.aceptar == false) {
 					seleccion = 2;
 				}
 				
 				if(aj.teclas.aceptar == true) {
-					combate = true;
+//					comenzarCombate();
+//					aj.teclas.aceptar = false;
+					aj.stopCombate = true;
+					
+					if((aliado.stats[0] > 0 && enemigo.stats[0] > 0)) {
+						
+						try {
+							switch(seleccionAtaque) {
+							case 1:
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque_1.png"));
+								if (aj.teclas.abajo == true){
+									seleccionAtaque = 3;
+								}else if(aj.teclas.dere == true) {
+									seleccionAtaque = 2;
+								}
+								
+								if(aj.teclas.espacio) {
+
+									ataques(aliado, enemigo, seleccionAtaque);
+
+								}
+								break;
+							case 2:
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque_2.png"));
+								if (aj.teclas.abajo == true){
+									seleccionAtaque = 4;
+								}else if(aj.teclas.izqui == true) {
+									seleccionAtaque = 1;
+								}
+								
+								if(aj.teclas.espacio) {
+
+									ataques(aliado, enemigo, seleccionAtaque);
+
+								}
+								break;
+							case 3:
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque_3.png"));
+								if (aj.teclas.arriba == true){
+									seleccionAtaque = 1;
+								}else if(aj.teclas.dere == true) {
+									seleccionAtaque = 4;
+								}
+								
+								if(aj.teclas.espacio) {
+
+									ataques(aliado, enemigo, seleccionAtaque);
+
+								}
+								break;
+							case 4:
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque_4.png"));
+								if (aj.teclas.arriba == true){
+									seleccionAtaque = 2;
+								}else if(aj.teclas.izqui == true) {
+									seleccionAtaque = 3;
+								}
+								
+								if(aj.teclas.espacio) {
+
+									ataques(aliado, enemigo, seleccionAtaque);
+
+								}
+								break;
+							}		
+							
+							aj.teclas.aceptar = true;
+							
+							if (aj.teclas.cancelar)
+								aj.teclas.cancelar = true;
+								//aj.teclas.aceptar = false;
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					
+					if(aj.teclas.cancelar) {
+						aj.stopCombate = false;
+						aj.teclas.aceptar = false;
+					}
+					
 				}else {
 					combate = false;
+					//System.out.println(combate);
 				}
 				break;
 			case 2:
@@ -157,16 +257,13 @@ public void dibujar(Graphics2D g2) {
 	}
 
 public void combate(Pokemon aliado, Pokemon enemigo) {
-
 //	Scanner lector = new Scanner(System.in);
 //
 //	System.out.println(enemigo.nombre+" PV: "+enemigo.maxPV);
 //	System.out.println(aliado.nombre+" PV: "+aliado.maxPV);
-	
-	while((aliado.stats[0] > 0 && enemigo.stats[0] > 0) && !aj.teclas.cancelar) {
-
+	if((aliado.stats[0] > 0 && enemigo.stats[0] > 0) && !aj.teclas.cancelar) {
 		int seleccionAtaque = 1;
-		
+
 		try {
 			switch(seleccionAtaque) {
 			case 1:
@@ -233,7 +330,7 @@ public void combate(Pokemon aliado, Pokemon enemigo) {
 
 		//System.out.println("ataque seleccionado: "+aliado.movimientos[seleccion-1].nombre);
 
-		ataques(aliado, enemigo, seleccionAtaque);
+		//ataques(aliado, enemigo, seleccionAtaque);
 
 	}
 }

@@ -32,10 +32,11 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
 	public boolean estadoCombate = false;
+	public boolean stopCombate = false;
 	JButton btn = new JButton();
 	
 	ControladorTile ControladorT = new ControladorTile(this);
-	Controles teclas = new Controles();
+	Controles teclas = new Controles(this);
 	Combate combate = new Combate(this);
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
@@ -98,10 +99,10 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		if (estadoCombate) {
+		if (!estadoCombate) {
 			combate.dibujar(g2);
 			if(combate.combate == true) {
-			combate.comenzarCombate();
+//			combate.comenzarCombate();
 		}
 		}else {
 			ControladorT.dibujar(g2);
