@@ -114,7 +114,7 @@ public class SplashMenu extends JDialog {
                     while (x <= 100) {
                         barra.setValue(x);
                         x++;
-                        Thread.sleep(20);
+                        Thread.sleep(1);
                         /*
                         if (x == 5) {
                             texto = "Cargando...";
