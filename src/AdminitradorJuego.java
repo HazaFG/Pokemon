@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class AdminitradorJuego extends JPanel implements Runnable{
 	
 	//CONFIGURACIONES DE PANTALLA
-		final int escalaOriginal = 5;
+		final int escalaOriginal = 7;
 		final int escala = 5;
 		
 		public final int tamPantalla = escalaOriginal * escala; //25x25 CUADROS
@@ -26,7 +26,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	
 	//CONFIGURACIÓN DE MUNDO
 	
-	public final int mundoFil = 85; //Las originales serán 83
+	public final int mundoFil = 800; //Las originales serán 83
 	public final int mundoCol = 43; // y 43
 	public final int maximoAnchoMundo = mundoCol * tamPantalla;
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
