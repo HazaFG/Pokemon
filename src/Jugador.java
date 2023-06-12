@@ -43,9 +43,9 @@ public class Jugador {
 	}
 	public void posicionBase() {
 		
-		MundoX = aj.tamPantalla * 30;
-		MundoY = aj.tamPantalla * 10;
-		velocidad = 3;
+		MundoX = aj.tamPantalla * 26;
+		MundoY = aj.tamPantalla * 192;
+		velocidad = 4;
 		direccion = "abajo";
 		
 	}
@@ -125,7 +125,7 @@ public class Jugador {
 			imagen = izq_1;
 			break;
 		}
-		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 32, 32, null);
+		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 50, 50, null);
 	}
 
 }
