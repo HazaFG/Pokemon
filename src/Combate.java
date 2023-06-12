@@ -87,6 +87,16 @@ public class Combate {
 	public void comenzarCombate() {
 		combate(aj.jugador.equipo[0], new Poliwag());
 	}
+	
+	public boolean huidaRand() {
+		int num = (int)Math.floor(Math.random()*2+1);
+		System.out.println("Numero: "+num);
+		if (num == 1) {
+			return true;
+		}
+		return false;
+	}
+	
 
 public void dibujar(Graphics2D g2) {
 		inicializarValores();
@@ -162,9 +172,7 @@ public void dibujar(Graphics2D g2) {
 								}
 								
 								if(aj.teclas.espacio) {
-
 									ataques(aliado, enemigo, seleccionAtaque);
-
 								}
 								break;
 							case 4:
@@ -212,6 +220,7 @@ public void dibujar(Graphics2D g2) {
 				}else if(aj.teclas.izqui == true) {
 					seleccion = 1;
 				}
+				
 				break;
 			case 3:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_objetos.png"));
@@ -227,6 +236,14 @@ public void dibujar(Graphics2D g2) {
 					seleccion = 2;
 				}else if(aj.teclas.izqui == true) {
 					seleccion = 3;
+				}
+					
+				if(aj.teclas.aceptar == true) {
+					if (huidaRand()) {
+						aj.estadoCombate = false;
+					}else {
+						System.out.println("No se pudo jaja");
+					}
 				}
 				break;
 			}			

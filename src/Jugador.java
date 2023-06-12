@@ -130,16 +130,29 @@ public class Jugador {
 			}
 			
 			if (colisionHierva == true) {
+				
+				if (hiervaRand()) {	
 				combate.inicializarValores();
 				//combate.comenzarCombate();
 				aj.estadoCombate = true;
 //				if(combate.combate == true) {
 //					combate.comenzarCombate();
 //				}
+				}
 			}
 		}
 		}
 	}
+	
+	public boolean hiervaRand() {
+		int num = (int)Math.floor(Math.random()*100+1);
+		System.out.println("Numero: "+num);
+		if (num == 10) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	public void dibujar(Graphics2D g2) {
 		

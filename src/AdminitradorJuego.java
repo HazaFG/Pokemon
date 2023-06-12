@@ -99,7 +99,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		if (!estadoCombate) {
+		if (estadoCombate) {
 			combate.dibujar(g2);
 			if(combate.combate == true) {
 //			combate.comenzarCombate();
