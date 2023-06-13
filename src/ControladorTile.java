@@ -841,6 +841,7 @@ public class ControladorTile {
 			tile[208] = new Tile();
 			tile[208].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/208.png"));
 			//tile[208].colision = true;
+			tile[208].colisionHierva = true;
 			
 			tile[209] = new Tile();
 			tile[209].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/209.png"));
@@ -1189,22 +1190,27 @@ public class ControladorTile {
 			tile[295] = new Tile();
 			tile[295].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/295.png"));
 			//tile[295].colision = true;
+			tile[295].colisionHierva = true;
 			
 			tile[296] = new Tile();
 			tile[296].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/296.png"));
 			//tile[296].colision = true;
+			tile[296].colisionHierva = true;
 			
 			tile[297] = new Tile();
 			tile[297].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/297.png"));
 			//[297].colision = true;
+			tile[297].colisionHierva = true;
 			
 			tile[298] = new Tile();
 			tile[298].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/298.png"));
 			//tile[298].colision = true;
+			tile[298].colisionHierva = true;
 			
 			tile[299] = new Tile();
 			tile[299].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/299.png"));
 			//tile[299].colision = true;
+			tile[299].colisionHierva = true;
 			
 			tile[300] = new Tile();
 			tile[300].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/300.png"));
@@ -1597,18 +1603,22 @@ public class ControladorTile {
 			tile[400] = new Tile();
 			tile[400].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/400.png"));
 			//tile[400].colision = true;
+			tile[400].colisionHierva = true;
 			
 			tile[401] = new Tile();
 			tile[401].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/401.png"));
 			//tile[401].colision = true;
+			tile[401].colisionHierva = true;
 			
 			tile[402] = new Tile();
 			tile[402].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/402.png"));
 			//tile[402].colision = true;
+			tile[402].colisionHierva = true;
 			
 			tile[403] = new Tile();
 			tile[403].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/403.png"));
 			//tile[403].colision = true;
+			tile[403].colisionHierva = true;
 			
 			tile[404] = new Tile();
 			tile[404].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/404.png"));
@@ -1621,6 +1631,7 @@ public class ControladorTile {
 			tile[406] = new Tile();
 			tile[406].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/406.png"));
 			//tile[406].colision = true;
+			tile[406].colisionHierva = true;
 			
 			tile[407] = new Tile();
 			tile[407].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/407.png"));
@@ -1713,18 +1724,22 @@ public class ControladorTile {
 			tile[429] = new Tile();
 			tile[429].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/429.png"));
 			//tile[429].colision = true;
+			tile[429].colisionHierva = true;
 			
 			tile[430] = new Tile();
 			tile[430].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/430.png"));
 			//tile[430].colision = true;
+			tile[430].colisionHierva = true;
 			
 			tile[431] = new Tile();
 			tile[431].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/431.png"));
 			//tile[431].colision = true;
+			tile[431].colisionHierva = true;
 			
 			tile[432] = new Tile();
 			tile[432].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/432.png"));
 			//tile[432].colision = true;
+			tile[432].colisionHierva = true;
 			
 			tile[433] = new Tile();
 			tile[433].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/433.png"));
@@ -1741,10 +1756,12 @@ public class ControladorTile {
 			tile[436] = new Tile();
 			tile[436].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/436.png"));
 			//tile[436].colision = true;
+			tile[436].colisionHierva = true;
 			
 			tile[437] = new Tile();
 			tile[437].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/437.png"));
 			//tile[437].colision = true;
+			tile[437].colisionHierva = true;
 			
 			tile[438] = new Tile();
 			tile[438].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/438.png"));

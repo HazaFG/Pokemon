@@ -31,18 +31,24 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAnchoMundo = mundoCol * tamPantalla;
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
+	public boolean estadoCombate = false;
+	public boolean stopCombate = false;
+	JButton btn = new JButton();
+	
 	ControladorTile ControladorT = new ControladorTile(this);
-	Controles teclas = new Controles();
+	Controles teclas = new Controles(this);
+	Combate combate = new Combate(this, new Pikachu());
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
-	Jugador jugador = new Jugador(this, teclas);
+	Jugador jugador = new Jugador(this, teclas,combate);
 	
 	public AdminitradorJuego() {
-		this.setSize(anchoPantalla, alturaPantalla);
+		this.setSize(800, 800);
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(teclas);
 		this.setFocusable(true);
+
 	}
 	
 	public void iniciarHiloJuego() {
@@ -93,8 +99,15 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		ControladorT.dibujar(g2);
-		jugador.dibujar(g2);
-		g2.dispose();
+		if (estadoCombate) {
+			combate.dibujar(g2);
+			if(combate.combate == true) {
+//			combate.comenzarCombate();
+		}
+		}else {
+			ControladorT.dibujar(g2);
+			jugador.dibujar(g2);
+		}
+		g2.dispose();			
 	}
 }

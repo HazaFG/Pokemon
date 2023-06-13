@@ -18,17 +18,25 @@ public class Jugador {
 	public String direccion;
 	public Rectangle hitBox;
 	public boolean ColisiOn = false;
+	public boolean colisionHierva = false;
 	public int hitBoxX,hitBoxY;
 	
+	Pokemon[] equipo = new Pokemon[6];
+	
 	public BufferedImage arr_1,arr_2,abj_1,abj_2,der_1,der_2,izq_1,izq_2;
+	public int contadorSprite = 0;
+	public int numeroSprite = 1;
 	
 	AdminitradorJuego aj;
 	Controles teclas;
+	SplashMenu splashM;
+	Combate combate; 
 	
-	public Jugador(AdminitradorJuego aj, Controles teclas) {
+	public Jugador(AdminitradorJuego aj, Controles teclas,Combate combate) {
 		
 		this.aj = aj;
 		this.teclas = teclas;
+		this.combate = combate;
 		
 		pantallaX = aj.anchoPantalla / 2;
 		pantallaY = aj.alturaPantalla  / 2;
@@ -37,6 +45,10 @@ public class Jugador {
 		
 		hitBoxX = hitBox.x;
 		hitBoxY = hitBox.y;
+		
+		//Pikachu pika = new Pikachu();
+		Snorlax snor = new Snorlax();
+		equipo[0] = snor;
 		
 		posicionBase();
 		getImagenJugador();
@@ -66,7 +78,8 @@ public class Jugador {
 	}
 	
 	public void actualizar() {
-		
+		if (aj.estadoCombate == false) {
+			
 		if(teclas.arriba == true || teclas.abajo == true ||
 				teclas.izqui == true || teclas.dere == true) {
 			
@@ -83,7 +96,19 @@ public class Jugador {
 				direccion = "derecha";
 			}
 			
+			contadorSprite++;
+			if (contadorSprite >10) {
+				if (numeroSprite == 1) {
+					numeroSprite =2;
+				}
+				else if (numeroSprite == 2) {
+					numeroSprite =1;
+				}
+				contadorSprite = 0;
+			}
+			
 			ColisiOn = false;
+			colisionHierva = false;
 			aj.cColision.revisarTile(this);
 			
 			if(ColisiOn == false) {
@@ -104,8 +129,30 @@ public class Jugador {
 				}
 			}
 			
+			if (colisionHierva == true) {
+				
+				if (hiervaRand()) {	
+				combate.inicializarValores();
+				//combate.comenzarCombate();
+				aj.estadoCombate = true;
+//				if(combate.combate == true) {
+//					combate.comenzarCombate();
+//				}
+				}
+			}
+		}
 		}
 	}
+	
+	public boolean hiervaRand() {
+		int num = (int)Math.floor(Math.random()*100+1);
+		System.out.println("Numero: "+num);
+		if (num == 10) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	public void dibujar(Graphics2D g2) {
 		
@@ -113,16 +160,36 @@ public class Jugador {
 		
 		switch (direccion) {
 		case "arriba":
-			imagen = arr_1;
+			if (numeroSprite == 1) {
+				imagen = arr_1;
+			}
+			if (numeroSprite == 2) {
+				imagen = arr_2;
+			}
 			break;
 		case "abajo":
-			imagen = abj_1;
+			if (numeroSprite == 1) {
+				imagen = abj_1;				
+			}
+			if (numeroSprite == 2) {
+				imagen = abj_2;				
+			}
 			break;
 		case "derecha":
-			imagen = der_1;
+			if (numeroSprite == 1) {
+				imagen = der_1;
+			}
+			if (numeroSprite == 2) {
+				imagen = der_2;
+			}
 			break;
 		case "izquierda":
-			imagen = izq_1;
+			if (numeroSprite == 1) {
+				imagen = izq_1;
+			}
+			if (numeroSprite == 2) {
+				imagen = izq_2;
+			}
 			break;
 		}
 		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 50, 50, null);

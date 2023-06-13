@@ -1,9 +1,0 @@
-package Main;
-
-public class HiloBomba extends Thread{
-
-	public void run() {
-		
-	}
-
-}

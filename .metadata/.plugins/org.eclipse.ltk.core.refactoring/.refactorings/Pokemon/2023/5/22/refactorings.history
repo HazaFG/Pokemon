@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;SplashMenu.java&apos; to &apos;PokemonJAJAJA/src/(default package)&apos;&#x0D;&#x0A;- Original project: &apos;Pokemon&apos;&#x0D;&#x0A;- Destination element: &apos;PokemonJAJAJA/src/(default package)&apos;&#x0D;&#x0A;- Original element: &apos;SplashMenu.java&apos;" description="Copy compilation unit" destination="=PokemonJAJAJA/src&lt;" element1="/src&lt;{SplashMenu.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1685421775125" units="1" version="1.0"/>
-</session>
