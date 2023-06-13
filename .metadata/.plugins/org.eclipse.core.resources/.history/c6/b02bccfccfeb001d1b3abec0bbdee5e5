@@ -1,0 +1,19 @@
+package Main;
+
+public class HiloBomba extends Thread{
+
+	AdminitradorJuego aj;
+	AssetSetter as = new AssetSetter(aj);
+	
+	public void run() {
+		try {
+			System.out.println("Bomb planted");
+			Thread.sleep(3000);
+			as.explotarBomba();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
