@@ -7,8 +7,9 @@ public class SplashMenu extends JDialog {
 
     private JProgressBar barra;
     private JLabel l2;
+    public JFrame ventana = new JFrame();
 
-    AdminitradorJuego aj = new AdminitradorJuego();
+	AdminitradorJuego aj = new AdminitradorJuego();
 
     //PROPIEDADES DIALOOGO
     public SplashMenu() {
@@ -102,6 +103,17 @@ public class SplashMenu extends JDialog {
             add(atras);
         }
     }
+    
+    //CAMBIAR DE PANTALLA
+    public void cambioPantalla (int pantalla){
+    	if (pantalla == 1) {
+    		ventana.setVisible(false);    		
+    	}
+    	if (pantalla == 2) {
+    		ventana.setVisible(true);    		
+    	}
+    	
+    }
 
     private void inicioHilo() {
         Thread hilo = new Thread(new Runnable() {
@@ -114,7 +126,7 @@ public class SplashMenu extends JDialog {
                     while (x <= 100) {
                         barra.setValue(x);
                         x++;
-                        Thread.sleep(1);
+                        Thread.sleep(20);
                         /*
                         if (x == 5) {
                             texto = "Cargando...";
@@ -158,13 +170,15 @@ public class SplashMenu extends JDialog {
                     play.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                         	
-                        	JFrame ventana = new JFrame();
                     		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    		ventana.setTitle("BomberSmite");
+                    		ventana.setTitle("HOLA ZUMAYA");
                     		
                         	AdminitradorJuego aJ = new AdminitradorJuego();
-                    		ventana.setSize(1015, 540);
+                    		ventana.setSize(800, 800);
                     		ventana.add(aJ);
+                    		ventana.setLocationRelativeTo(null);
+                    		ventana.getContentPane().setLayout(null);
+                    		ventana.setUndecorated(true);
                     		
                     		aJ.iniciarHiloJuego();
                     		
@@ -197,5 +211,9 @@ public class SplashMenu extends JDialog {
         });
         hilo.start();
     }
+    
+    public void setVentana(JFrame ventana) {
+		this.ventana = ventana;
+	}
 
 }

@@ -32,6 +32,9 @@ public class Colision {
 			if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
 				jugador.ColisiOn = true;
 			}
+			if(aj.ControladorT.tile[tileNum1].colisionHierva == true || aj.ControladorT.tile[tileNum2].colisionHierva == true) {
+				jugador.colisionHierva = true;
+			}
 			break;
 		case "abajo":
 			jugadorAbajoFila = (jugadorAbajoY + jugador.velocidad)/aj.tamPantalla;
@@ -39,6 +42,9 @@ public class Colision {
 			tileNum2 = aj.ControladorT.numTileMap[jugadorDereCol][jugadorAbajoFila];
 			if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
 				jugador.ColisiOn = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionHierva == true || aj.ControladorT.tile[tileNum2].colisionHierva == true) {
+				jugador.colisionHierva = true;
 			}
 			break;
 		case "izquierda":
@@ -48,6 +54,9 @@ public class Colision {
 			if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
 				jugador.ColisiOn = true;
 			}
+			if(aj.ControladorT.tile[tileNum1].colisionHierva == true || aj.ControladorT.tile[tileNum2].colisionHierva == true) {
+				jugador.colisionHierva = true;
+			}
 			break;
 		case "derecha":
 			jugadorDereCol = (jugadorDereX + jugador.velocidad)/aj.tamPantalla;
@@ -55,6 +64,9 @@ public class Colision {
 			tileNum2 = aj.ControladorT.numTileMap[jugadorDereCol][jugadorAbajoFila];
 			if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
 				jugador.ColisiOn = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionHierva == true || aj.ControladorT.tile[tileNum2].colisionHierva == true) {
+				jugador.colisionHierva = true;
 			}
 			break;
 		}
