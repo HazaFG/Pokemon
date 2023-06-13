@@ -1,9 +1,0 @@
-package Main;
-
-public class HiloBomba {
-
-	public HiloBomba() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
