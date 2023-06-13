@@ -89,7 +89,7 @@ public class Combate {
 	}
 	
 	public boolean huidaRand() {
-		int num = (int)Math.floor(Math.random()*6+1);
+		int num = (int)Math.floor(Math.random()*2+1);
 		System.out.println("Numero: "+num);
 		if (num == 1) {
 			return true;
@@ -238,14 +238,11 @@ public void dibujar(Graphics2D g2) {
 					seleccion = 3;
 				}
 					
-				if(aj.teclas.aceptar == true && !aj.pause) {
-					hiloCombate.run();
+				if(aj.teclas.aceptar == true) {
 					if (huidaRand()) {
 						aj.estadoCombate = false;
-						System.out.println("okjajaja");
 					}else {
 						System.out.println("No se pudo jaja");
-						ataqueEnemigo(aliado, enemigo);
 					}
 				}
 				break;
