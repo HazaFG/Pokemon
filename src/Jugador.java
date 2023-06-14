@@ -86,7 +86,7 @@ public class Jugador {
 		Koffing kof = new Koffing();
 		equipo[0] = snor;
 		equipo[1] = zumaya;
-		equipo[2] = kof;
+		//equipo[2] = kof;
 		
 		
 		posicionBase();
@@ -207,8 +207,9 @@ public class Jugador {
 			if (colisionHierva == true) {
 				if (hiervaRand()) {	
 				combate.inicializarValores();
+				combate.setEnemigo(new Poliwag());
 				//combate.comenzarCombate();
-				//aj.estadoCombate = true;
+				aj.estadoCombate = true;
 //				if(combate.combate == true) {
 //					combate.comenzarCombate();
 //				}

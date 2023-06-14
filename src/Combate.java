@@ -190,12 +190,6 @@ public void dibujar(Graphics2D g2) {
 								break;
 							}		
 							
-							aj.teclas.aceptar = true;
-							
-							if (aj.teclas.cancelar)
-								aj.teclas.cancelar = true;
-								//aj.teclas.aceptar = false;
-							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -213,10 +207,18 @@ public void dibujar(Graphics2D g2) {
 								inicializarValores();
 							}else {
 								aj.estadoCombate = false;
+								seleccionAtaque = 1;
+								
+								aj.stopCombate = false;
+								aj.teclas.aceptar = false;
 							}
 						}else {
 							//muere el enemigo
 							aj.estadoCombate = false;
+							seleccionAtaque = 1;
+							
+							aj.stopCombate = false;
+							aj.teclas.aceptar = false;
 							
 						}
 					}
@@ -258,10 +260,11 @@ public void dibujar(Graphics2D g2) {
 						if(equipoVivo()) {
 							
 							//pantalla de seleccion de pokemon
-							cambiarPokemon(2);
+							cambiarPokemon(1);
 							inicializarValores();
 						}else {
 							aj.estadoCombate = false;
+							seleccionAtaque = 1;
 						}
 					}
 				}
@@ -284,6 +287,7 @@ public void dibujar(Graphics2D g2) {
 							aj.jugador.equipo[numeroDePokemones()] = enemigo;
 							System.out.println("pokemon capturado: "+aj.jugador.equipo[numeroDePokemones()-1]);
 							aj.estadoCombate = false;
+							seleccionAtaque = 1;
 							System.out.println("numero de pokemones: "+numeroDePokemones());
 						}else {
 							//lanza la pokeball y falla
@@ -302,6 +306,7 @@ public void dibujar(Graphics2D g2) {
 									inicializarValores();
 								}else {
 									aj.estadoCombate = false;
+									seleccionAtaque = 1;
 								}
 							}
 						}
@@ -322,6 +327,7 @@ public void dibujar(Graphics2D g2) {
 				if(aj.teclas.aceptar == true) {
 					if (false) {
 						aj.estadoCombate = false;
+						seleccionAtaque = 1;
 					}else {
 						//aqui ataca el pokemon enemigo
 						ataqueEnemigo(aliado, enemigo);
@@ -337,6 +343,7 @@ public void dibujar(Graphics2D g2) {
 								inicializarValores();
 							}else {
 								aj.estadoCombate = false;
+								seleccionAtaque = 1;
 							}
 						}
 					}
@@ -559,6 +566,11 @@ public boolean equipoVivo() {
 	
 	return equipoVivo;
 	
+}
+
+public void setEnemigo(Pokemon enemigo) {
+	this.enemigo = enemigo;
+	this.nombreEnemigo = enemigo.nombre;
 }
 
 }
