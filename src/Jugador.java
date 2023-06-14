@@ -21,6 +21,8 @@ public class Jugador {
 	
 	public boolean colisionHierva = false;
 	
+	public int mapaJugador = 0;
+	
 	public boolean colisionEntrada1 = false;
 	public boolean colisionSalida1 = false;
 	
@@ -73,8 +75,9 @@ public class Jugador {
 		this.teclas = teclas;
 		this.combate = combate;
 		
-		pantallaX = aj.anchoPantalla / 2;
-		pantallaY = aj.alturaPantalla  / 2;
+		
+		pantallaX = aj.anchoPantalla / 3;
+		pantallaY = aj.alturaPantalla  / 3;
 		
 		hitBox = new Rectangle(0, 0, 15, 15);
 		
@@ -91,11 +94,12 @@ public class Jugador {
 	public void posicionBase() {
 		
 		MundoX = aj.tamPantalla * 27;
-		MundoY = aj.tamPantalla * 162;
-		velocidad = 4;
+		MundoY = aj.tamPantalla * 199;
+		velocidad = 7;
 		direccion = "abajo";
 		
 	}
+	
 	
 	public void getImagenJugador() {
 		try {
@@ -217,67 +221,80 @@ public class Jugador {
 				MundoX = aj.tamPantalla * 10;
 				MundoY = aj.tamPantalla * 10;
 			} 
-			if(colisionSalida1 == true) {
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 120;
-				aj.mapaActual = 0;
-				
-			}
+
 			//CASA RIVAL
 			if (colisionEntrada2 == true) {
 				aj.mapaActual = 2;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 120;
+				MundoX = aj.tamPantalla * 10;
+				MundoY = aj.tamPantalla * 10;
 			}
-			if(colisionSalida2 == true) {
-				MundoX = aj.tamPantalla * 30;
-				MundoY = aj.tamPantalla * 110;
-				aj.mapaActual = 0;
+			
+			if(colisionSalida1 == true) {
+				
+				switch(aj.mapaActual) {
+				
+				case 1:
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 32;
+					MundoY = aj.tamPantalla * 199;		
+					break;
+				case 2:
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 36;
+					MundoY = aj.tamPantalla * 192;
+					break;
+				case 3:
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 50;
+					MundoY = aj.tamPantalla * 100;
+					break;
+				case 4:
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 20;
+					MundoY = aj.tamPantalla * 90;
+					break;
+				case 5:
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 40;
+					MundoY = aj.tamPantalla * 80;
+					break;
+				case 6:
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 70;
+					MundoY = aj.tamPantalla * 70;
+					break;
+				}
+				
 			}
+			
 			//CASA JUGADOR
 			if (colisionEntrada3 == true) {
 				aj.mapaActual = 3;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
+				MundoX = aj.tamPantalla * 10;
+				MundoY = aj.tamPantalla * 10;
 			}
-			if(colisionSalida3 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 50;
-				MundoY = aj.tamPantalla * 100;
-			}
+
 			//CENTRO POKEMON 1
 			if (colisionEntrada4 == true) {
 				aj.mapaActual = 4;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
 			} 
-			if(colisionSalida4 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 20;
-				MundoY = aj.tamPantalla * 90;
-			}
+
 			//TIENDA 1
 			if (colisionEntrada5 == true) {
 				aj.mapaActual = 5;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
 			} 
-			if(colisionSalida5 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 40;
-				MundoY = aj.tamPantalla * 80;
-			}
+
 			//ESCUELA 1
 			if (colisionEntrada6 == true) {
 				aj.mapaActual = 6;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
 			} 	
-			if(colisionSalida6 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 70;
-				MundoY = aj.tamPantalla * 70;
-			}
+
 			//GIMNASIO 1
 			if (colisionEntrada7 == true) {
 				aj.mapaActual = 7;
@@ -295,49 +312,30 @@ public class Jugador {
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
 			}
-			if(colisionSalida8 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 50;
-			}
+
 			//TIENDA 2
 			if (colisionEntrada9 == true) {
 				aj.mapaActual = 9;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
 			}
-			if (colisionSalida9 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 40;
-			}
+
 			//GIMNASIO 2
 			if (colisionEntrada10 == true) {
 				aj.mapaActual = 10;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
 			} 	
-			if(colisionSalida10 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 30;
-			}
+
 			//MUSEO
 			if (colisionEntrada11 == true) {
 				aj.mapaActual = 11;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
 			} 	
-			if(colisionSalida11 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
-			}
-			
-		}
-		
 		}
 	}
+}
 	
 	public boolean hiervaRand() {
 //		int num = (int)Math.floor(Math.random()*100+1);
