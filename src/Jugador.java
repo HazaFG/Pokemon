@@ -81,9 +81,13 @@ public class Jugador {
 		hitBoxX = hitBox.x;
 		hitBoxY = hitBox.y;
 		
-		//Pikachu pika = new Pikachu();
 		Snorlax snor = new Snorlax();
+		Machoke zumaya = new Machoke();
+		Koffing kof = new Koffing();
 		equipo[0] = snor;
+		equipo[1] = zumaya;
+		equipo[2] = kof;
+		
 		
 		posicionBase();
 		getImagenJugador();

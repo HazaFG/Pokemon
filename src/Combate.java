@@ -32,6 +32,9 @@ public class Combate {
 	
 	Pokemon aliado;
 	
+	//pokemon que esta peleando
+	int pokemonEnBatalla = 0;
+	
 	String[] nombreMovimientosAliado = new String[4];
 	
 	int[] maxPPMovimientosAliado = new int[4];
@@ -59,25 +62,21 @@ public class Combate {
 	}
 	
 	public void inicializarValores() {
-		this.nombreAliado = aj.jugador.equipo[0].nombre;
-		this.vidaMax = aj.jugador.equipo[0].maxPV;
-		this.vida = aj.jugador.equipo[0].stats[0];
-		this.nivelPokemonAliado = aj.jugador.equipo[0].lvl;
-		this.aliado = aj.jugador.equipo[0];
+		this.nombreAliado = aj.jugador.equipo[pokemonEnBatalla].nombre;
+		this.vidaMax = aj.jugador.equipo[pokemonEnBatalla].maxPV;
+		this.vida = aj.jugador.equipo[pokemonEnBatalla].stats[0];
+		this.nivelPokemonAliado = aj.jugador.equipo[pokemonEnBatalla].lvl;
+		this.aliado = aj.jugador.equipo[pokemonEnBatalla];
 		
 		for (int i = 0; i < 4; i++) {
 			nombreMovimientosAliado[i] = aliado.movimientos[i].nombre;
 			maxPPMovimientosAliado[i] = aliado.movimientos[i].PP;
 			PPMovimientosAliado[i] = aliado.movimientos[i].PP;
 		}
-
-//			try {
-//				imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonAliado+"_aliado.png"));
-//				imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonEnemigo+"_enemigo.png"));
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+	}
+	
+	public void cambiarPokemon(int cambio) {
+		pokemonEnBatalla = cambio;
 	}
 	
 	public void cambiarAString() {
@@ -202,7 +201,24 @@ public void dibujar(Graphics2D g2) {
 							e.printStackTrace();
 						}
 					}else {
-						aj.estadoCombate = false;
+						
+						//si aliado muere
+						if(aliado.stats[0] <= 0) {
+							System.out.println("aliado muere");
+							
+							if(equipoVivo()) {
+								
+								//pantalla de seleccion de pokemon
+								cambiarPokemon(1);
+								inicializarValores();
+							}else {
+								aj.estadoCombate = false;
+							}
+						}else {
+							//muere el enemigo
+							aj.estadoCombate = false;
+							
+						}
 					}
 					
 					
@@ -226,6 +242,30 @@ public void dibujar(Graphics2D g2) {
 					seleccion = 1;
 				}
 				
+				if(aj.teclas.aceptar == true) {
+					//hacer menu para seleccionar a que pokemon se desea cambiar
+					//evitar que se pueda seleccionar al pokemon que ya esta peleando
+					cambiarPokemon(1);
+					inicializarValores();
+					
+					//aqui ataca el pokemon enemigo
+					ataqueEnemigo(aliado, enemigo);
+					
+					//si aliado muere
+					if(aliado.stats[0] <= 0) {
+						System.out.println("aliado muere");
+						
+						if(equipoVivo()) {
+							
+							//pantalla de seleccion de pokemon
+							cambiarPokemon(2);
+							inicializarValores();
+						}else {
+							aj.estadoCombate = false;
+						}
+					}
+				}
+				
 				break;
 			case 3:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_objetos.png"));
@@ -239,7 +279,7 @@ public void dibujar(Graphics2D g2) {
 					
 					//comprueba si el equipo del jugador ya esta lleno
 					if(numeroDePokemones() < 6) {
-						if (huidaRand()) {
+						if (false) {
 							//lanza la pokeball y captura
 							aj.jugador.equipo[numeroDePokemones()] = enemigo;
 							System.out.println("pokemon capturado: "+aj.jugador.equipo[numeroDePokemones()-1]);
@@ -254,7 +294,15 @@ public void dibujar(Graphics2D g2) {
 							//si aliado muere
 							if(aliado.stats[0] <= 0) {
 								System.out.println("aliado muere");
-								aj.estadoCombate = false;
+								
+								if(equipoVivo()) {
+									
+									//pantalla de seleccion de pokemon
+									cambiarPokemon(1);
+									inicializarValores();
+								}else {
+									aj.estadoCombate = false;
+								}
 							}
 						}
 					}else {
@@ -272,7 +320,7 @@ public void dibujar(Graphics2D g2) {
 				}
 					
 				if(aj.teclas.aceptar == true) {
-					if (huidaRand()) {
+					if (false) {
 						aj.estadoCombate = false;
 					}else {
 						//aqui ataca el pokemon enemigo
@@ -281,7 +329,15 @@ public void dibujar(Graphics2D g2) {
 						//si aliado muere
 						if(aliado.stats[0] <= 0) {
 							System.out.println("aliado muere");
-							aj.estadoCombate = false;
+							
+							if(equipoVivo()) {
+								
+								//pantalla de seleccion de pokemon
+								cambiarPokemon(1);
+								inicializarValores();
+							}else {
+								aj.estadoCombate = false;
+							}
 						}
 					}
 				}
@@ -491,5 +547,18 @@ public int numeroDePokemones() {
 	return numeroDePokemones;
 }
 
+public boolean equipoVivo() {
+	boolean equipoVivo = false;
+	
+	for (int i = 0; i < numeroDePokemones(); i++) {
+		if(aj.jugador.equipo[i].stats[0] > 0) {
+			equipoVivo = true;
+			break;
+		}
+	}
+	
+	return equipoVivo;
+	
+}
 
 }
