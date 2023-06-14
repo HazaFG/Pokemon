@@ -36,7 +36,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
 	public boolean estadoCombate = true;
-	public boolean stopCombate = false;
+	public boolean stopCombate 	 = false;
+	public boolean stopSeleccion = false;
 	JButton btn = new JButton();
 	
 	ControladorTile ControladorT = new ControladorTile(this);

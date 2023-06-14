@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 public class Combate {
 	
 	AdminitradorJuego aj;
-	HiloCombate hiloCombate;
+	//HiloCombate hiloCombate;
 
 	Graphics2D g2;
 	
@@ -29,6 +29,7 @@ public class Combate {
 	
 	int seleccion = 1;
 	int seleccionAtaque = 1;
+	int seleccionPokemon = 1;
 	
 	Pokemon aliado;
 	
@@ -101,7 +102,7 @@ public void dibujar(Graphics2D g2) {
 		inicializarValores();
 		
 		int fontSize = 18;
-		hiloCombate = new HiloCombate(aj);
+		//hiloCombate = new HiloCombate(aj);
 		
 		try {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
@@ -125,8 +126,7 @@ public void dibujar(Graphics2D g2) {
 				}
 				
 				if(aj.teclas.aceptar == true) {
-//					comenzarCombate();
-//					aj.teclas.aceptar = false;
+					
 					aj.stopCombate = true;
 					
 					if((aliado.stats[0] > 0 && enemigo.stats[0] > 0)) {
@@ -203,6 +203,8 @@ public void dibujar(Graphics2D g2) {
 							if(equipoVivo()) {
 								
 								//pantalla de seleccion de pokemon
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_seleccion.png"));
+								
 								cambiarPokemon(1);
 								inicializarValores();
 							}else {
@@ -223,31 +225,79 @@ public void dibujar(Graphics2D g2) {
 						}
 					}
 					
-					
-					
+					//se presion o
 					if(aj.teclas.cancelar) {
 						aj.stopCombate = false;
 						aj.teclas.aceptar = false;
 					}
 					
-				}else {
-					combate = false;
-					
-					//System.out.println(combate);
 				}
 				break;
+				/////////////////////////////////////////////////////////////////////
 			case 2:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_pokemon.png"));
-				if (aj.teclas.abajo == true){
+				if (aj.teclas.abajo == true && aj.teclas.aceptar == false){
 					seleccion = 4;
-				}else if(aj.teclas.izqui == true) {
+				}else if(aj.teclas.izqui == true && aj.teclas.aceptar == false) {
 					seleccion = 1;
 				}
-				
+
 				if(aj.teclas.aceptar == true) {
 					//hacer menu para seleccionar a que pokemon se desea cambiar
 					//evitar que se pueda seleccionar al pokemon que ya esta peleando
-					cambiarPokemon(1);
+					
+					aj.stopSeleccion = true;
+
+					if(!aj.teclas.espacio) {
+
+						try {
+							switch(seleccionPokemon) {
+							case 1:
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_seleccion.png"));
+								if (aj.teclas.abajo == true){
+									seleccionPokemon = 3;
+								}else if(aj.teclas.dere == true) {
+									seleccionPokemon = 2;
+								}
+
+								System.out.println(seleccionPokemon);
+								
+								if(aj.teclas.espacio) {
+
+									cambiarPokemon(seleccionPokemon);
+									inicializarValores();
+
+								}
+								break;
+							case 2:
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_seleccion.png"));
+								if (aj.teclas.abajo == true){
+									seleccionPokemon = 4;
+								}else if(aj.teclas.izqui == true) {
+									seleccionPokemon = 1;
+								}
+
+								if(aj.teclas.espacio) {
+
+									cambiarPokemon(seleccionPokemon);
+									inicializarValores();
+
+								}
+								break;
+
+							}
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					
+					if(aj.teclas.cancelar) {
+						aj.stopSeleccion = false;
+						aj.teclas.aceptar = false;
+					}
+					/*
+					//cambiarPokemon(1);
 					inicializarValores();
 					
 					//aqui ataca el pokemon enemigo
@@ -266,7 +316,7 @@ public void dibujar(Graphics2D g2) {
 							aj.estadoCombate = false;
 							seleccionAtaque = 1;
 						}
-					}
+					}*/
 				}
 				
 				break;
