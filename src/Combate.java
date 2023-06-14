@@ -87,6 +87,16 @@ public class Combate {
 	public void comenzarCombate() {
 		combate(aj.jugador.equipo[0], new Poliwag());
 	}
+	
+	public boolean huidaRand() {
+		int num = (int)Math.floor(Math.random()*2+1);
+		System.out.println("Numero: "+num);
+		if (num == 1) {
+			return true;
+		}
+		return false;
+	}
+	
 
 public void dibujar(Graphics2D g2) {
 		inicializarValores();
@@ -123,6 +133,7 @@ public void dibujar(Graphics2D g2) {
 					if((aliado.stats[0] > 0 && enemigo.stats[0] > 0)) {
 						
 						try {
+							
 							switch(seleccionAtaque) {
 							case 1:
 								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque_1.png"));
@@ -161,9 +172,7 @@ public void dibujar(Graphics2D g2) {
 								}
 								
 								if(aj.teclas.espacio) {
-
 									ataques(aliado, enemigo, seleccionAtaque);
-
 								}
 								break;
 							case 4:
@@ -192,7 +201,11 @@ public void dibujar(Graphics2D g2) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+					}else {
+						aj.estadoCombate = false;
 					}
+					
+					
 					
 					if(aj.teclas.cancelar) {
 						aj.stopCombate = false;
@@ -201,6 +214,7 @@ public void dibujar(Graphics2D g2) {
 					
 				}else {
 					combate = false;
+					
 					//System.out.println(combate);
 				}
 				break;
@@ -211,6 +225,7 @@ public void dibujar(Graphics2D g2) {
 				}else if(aj.teclas.izqui == true) {
 					seleccion = 1;
 				}
+				
 				break;
 			case 3:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_objetos.png"));
@@ -219,6 +234,34 @@ public void dibujar(Graphics2D g2) {
 				}else if(aj.teclas.dere == true) {
 					seleccion = 4;
 				}
+				
+				if(aj.teclas.aceptar == true) {
+					
+					//comprueba si el equipo del jugador ya esta lleno
+					if(numeroDePokemones() < 6) {
+						if (huidaRand()) {
+							//lanza la pokeball y captura
+							aj.jugador.equipo[numeroDePokemones()] = enemigo;
+							System.out.println("pokemon capturado: "+aj.jugador.equipo[numeroDePokemones()-1]);
+							aj.estadoCombate = false;
+							System.out.println("numero de pokemones: "+numeroDePokemones());
+						}else {
+							//lanza la pokeball y falla
+							System.out.println("no se atrapo al pokemon");
+							//aqui ataca el pokemon enemigo
+							ataqueEnemigo(aliado, enemigo);
+							
+							//si aliado muere
+							if(aliado.stats[0] <= 0) {
+								System.out.println("aliado muere");
+								aj.estadoCombate = false;
+							}
+						}
+					}else {
+						System.out.println("el equipo ya esta lleno");
+					}
+				}
+				
 				break;
 			case 4:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_huida.png"));
@@ -226,6 +269,21 @@ public void dibujar(Graphics2D g2) {
 					seleccion = 2;
 				}else if(aj.teclas.izqui == true) {
 					seleccion = 3;
+				}
+					
+				if(aj.teclas.aceptar == true) {
+					if (huidaRand()) {
+						aj.estadoCombate = false;
+					}else {
+						//aqui ataca el pokemon enemigo
+						ataqueEnemigo(aliado, enemigo);
+						
+						//si aliado muere
+						if(aliado.stats[0] <= 0) {
+							System.out.println("aliado muere");
+							aj.estadoCombate = false;
+						}
+					}
 				}
 				break;
 			}			
@@ -246,6 +304,52 @@ public void dibujar(Graphics2D g2) {
 	        g2.setFont(font2);
 			g2.drawString(""+nivelPokemonAliado,570,550);
 			g2.drawString(""+nivelPokemonEnemigo,125,275);
+			
+			if (aj.stopCombate) {
+				g2.setColor(Color.BLACK);
+				Font font3 = new Font("Copperplate Gothic Bold", Font.BOLD, fontSize+2);
+				g2.setFont(font3);
+				
+				//ATAQUES, TIPO DE ATAQUE Y PP
+				
+				g2.drawString(""+maxPPMovimientosAliado[seleccionAtaque-1],655,640);
+				g2.drawString(""+PPMovimientosAliado[seleccionAtaque-1],715,640);
+				
+				g2.drawString(""+nombreMovimientosAliado[0],60,643);
+				g2.drawString(""+nombreMovimientosAliado[1],335,643);
+				g2.drawString(""+nombreMovimientosAliado[2],60,737);
+				g2.drawString(""+nombreMovimientosAliado[3],335,737);
+				
+				switch (aliado.movimientos[seleccionAtaque-1].tipo) {
+				case "Normal":
+					g2.setColor(Color.DARK_GRAY);
+					break;
+				case "Electrico":
+					g2.setColor(Color.YELLOW);
+					break;
+				case "Lucha":
+					g2.setColor(Color.decode("#B35ABB"));
+					break;
+				case "Fuego":
+					g2.setColor(Color.decode("#FF0000"));
+					break;
+				case "Veneno":
+					g2.setColor(Color.decode("#68FF00"));
+					break;
+				case "Fantasma":
+					g2.setColor(Color.decode("#63FFF3"));
+					break;
+				case "Agua":
+					g2.setColor(Color.decode("#0800FF"));
+					break;
+				case "Volador":
+					g2.setColor(Color.decode("#D2FF7C"));
+					break;
+				}
+				g2.drawString(aliado.movimientos[seleccionAtaque-1].tipo, 640,760);
+ 
+			}
+			
 			
 			
             
@@ -375,5 +479,17 @@ public void ataqueEnemigo(Pokemon aliado, Pokemon enemigo) {
 
 
 }
+
+public int numeroDePokemones() {
+	int numeroDePokemones = 0;
+
+	for (int i = 0; i < aj.jugador.equipo.length; i++) {
+		if(aj.jugador.equipo[i] != null)
+			numeroDePokemones++;
+	}
+	
+	return numeroDePokemones;
+}
+
 
 }
