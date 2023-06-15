@@ -56,6 +56,9 @@ public class Jugador {
 	public boolean colisionEntrada11 = false;
 	public boolean colisionSalida11 = false;
 	
+	public boolean colisionEntradaPiso = false;
+	public boolean colisionSalidaPiso = false;
+	
 	public int hitBoxX,hitBoxY;
 	
 	Pokemon[] equipo = new Pokemon[6];
@@ -76,8 +79,8 @@ public class Jugador {
 		this.combate = combate;
 		
 		
-		pantallaX = aj.anchoPantalla / 3;
-		pantallaY = aj.alturaPantalla  / 3;
+		pantallaX = aj.anchoPantalla / 6;
+		pantallaY = aj.alturaPantalla  / 5;
 		
 		hitBox = new Rectangle(0, 0, 15, 15);
 		
@@ -92,12 +95,10 @@ public class Jugador {
 		getImagenJugador();
 	}
 	public void posicionBase() {
-		
-		MundoX = aj.tamPantalla * 27;
-		MundoY = aj.tamPantalla * 199;
-		velocidad = 7;
+		MundoX = aj.tamPantalla * 31; // 27
+		MundoY = aj.tamPantalla * 21; // 199
+		velocidad = 10;
 		direccion = "abajo";
-		
 	}
 	
 	
@@ -183,6 +184,9 @@ public class Jugador {
 			colisionEntrada11 = false;
 			colisionSalida11 = false;
 			
+			colisionEntradaPiso = false;
+			colisionSalidaPiso = false;
+			
 			aj.cColision.revisarTile(this);
 			
 			if(ColisiOn == false) {
@@ -218,50 +222,98 @@ public class Jugador {
 			//LABORATRIO
 			if (colisionEntrada1 == true) {
 				aj.mapaActual = 1;
-				MundoX = aj.tamPantalla * 10;
-				MundoY = aj.tamPantalla * 10;
+				velocidad = 4;
+				MundoX = aj.tamPantalla * 22;
+				MundoY = aj.tamPantalla * 22;
 			} 
 
 			//CASA RIVAL
 			if (colisionEntrada2 == true) {
 				aj.mapaActual = 2;
-				MundoX = aj.tamPantalla * 10;
-				MundoY = aj.tamPantalla * 10;
+				velocidad = 4;
+				MundoX = aj.tamPantalla * 19;
+				MundoY = aj.tamPantalla * 17;
 			}
 			
-			if(colisionSalida1 == true) {
+			if(colisionSalida1 == true || colisionSalidaPiso == true || colisionSalida3 == true || colisionSalida4 == true || colisionSalida5 == true || colisionSalida6 == true || colisionSalida8 == true || colisionSalida10 == true) {
 				
 				switch(aj.mapaActual) {
 				
-				case 1:
+				case 1: // LABORATORIO
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 32;
-					MundoY = aj.tamPantalla * 199;		
+					MundoY = aj.tamPantalla * 199;
+					velocidad = 5;
 					break;
-				case 2:
+					
+				case 2: // CASA DEL RIVAL
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 36;
 					MundoY = aj.tamPantalla * 192;
+					velocidad = 5;
 					break;
-				case 3:
+					
+				case 3: // CASA DEL JUGADOR
 					aj.mapaActual = 0;
-					MundoX = aj.tamPantalla * 50;
-					MundoY = aj.tamPantalla * 100;
+					MundoX = aj.tamPantalla * 26;
+					MundoY = aj.tamPantalla * 192;
+					velocidad = 5;
 					break;
-				case 4:
+					
+				case 4: // Pokemon CENTER
 					aj.mapaActual = 0;
-					MundoX = aj.tamPantalla * 20;
-					MundoY = aj.tamPantalla * 90;
+					MundoX = aj.tamPantalla * 27;
+					MundoY = aj.tamPantalla * 132;
+					velocidad = 5;
 					break;
-				case 5:
+					
+				case 5: // POKEMON MALL
 					aj.mapaActual = 0;
-					MundoX = aj.tamPantalla * 40;
-					MundoY = aj.tamPantalla * 80;
+					MundoX = aj.tamPantalla * 34;
+					MundoY = aj.tamPantalla * 127;
+					velocidad = 5;
 					break;
-				case 6:
+					
+				case 6: // POKEMON ESCUELA
 					aj.mapaActual = 0;
-					MundoX = aj.tamPantalla * 70;
-					MundoY = aj.tamPantalla * 70;
+					MundoX = aj.tamPantalla * 25;
+					MundoY = aj.tamPantalla * 125;
+					velocidad = 5;
+					break;
+					
+				case 7: // POKEMON Gimnasio
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 32;
+					MundoY = aj.tamPantalla * 116;
+					velocidad = 5;
+					break;
+					
+				case 8: // POKEMON CENTER 2
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 17;
+					MundoY = aj.tamPantalla *35;
+					velocidad = 5;
+					break;
+					
+				case 9: // TIENDA 2
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 31;
+					MundoY = aj.tamPantalla * 21;
+					velocidad = 5;
+					break;
+					
+				case 10: // GIMNASIO 2
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 19;
+					MundoY = aj.tamPantalla * 21;
+					velocidad = 5;
+					break;
+					
+				case 12: // SEGUNDO PISO
+					aj.mapaActual = 3;
+					MundoX = aj.tamPantalla * 25;
+					MundoY = aj.tamPantalla * 12;
+					velocidad = 5;
 					break;
 				}
 				
@@ -270,51 +322,63 @@ public class Jugador {
 			//CASA JUGADOR
 			if (colisionEntrada3 == true) {
 				aj.mapaActual = 3;
-				MundoX = aj.tamPantalla * 10;
-				MundoY = aj.tamPantalla * 10;
+				velocidad = 4;
+				MundoX = aj.tamPantalla * 20;
+				MundoY = aj.tamPantalla * 18;
 			}
+			
+			//SEGUNDO PISO // AQUI ENTRA
+			if (colisionEntradaPiso == true) {
+				aj.mapaActual = 12;
+				velocidad = 4;
+				MundoX = aj.tamPantalla * 18;
+				MundoY = aj.tamPantalla * 13;
+			}
+			
 
-			//CENTRO POKEMON 1
+			//CENTRO POKEMON 1 - 4
 			if (colisionEntrada4 == true) {
 				aj.mapaActual = 4;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
+				velocidad = 4;
+				MundoX = aj.tamPantalla * 21;
+				MundoY = aj.tamPantalla * 19;
 			} 
 
 			//TIENDA 1
 			if (colisionEntrada5 == true) {
 				aj.mapaActual = 5;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
+				velocidad = 4;
+				MundoX = aj.tamPantalla * 20;
+				MundoY = aj.tamPantalla * 18;
 			} 
 
 			//ESCUELA 1
 			if (colisionEntrada6 == true) {
+				velocidad = 4;
 				aj.mapaActual = 6;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
+				MundoX = aj.tamPantalla * 22;
+				MundoY = aj.tamPantalla * 19;
 			} 	
 
 			//GIMNASIO 1
 			if (colisionEntrada7 == true) {
+				velocidad = 4;
 				aj.mapaActual = 7;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
+				MundoX = aj.tamPantalla * 23;
+				MundoY = aj.tamPantalla * 19;
 			} 	
-			if(colisionSalida7 == true) {
-				aj.mapaActual = 0;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 60;
-			}
+			
 			//CENTRO POKEMON 2
 			if (colisionEntrada8 == true) {
+				velocidad = 4;
 				aj.mapaActual = 8;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
+				MundoX = aj.tamPantalla * 21;
+				MundoY = aj.tamPantalla * 19;
 			}
 
 			//TIENDA 2
 			if (colisionEntrada9 == true) {
+				velocidad = 4;
 				aj.mapaActual = 9;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
@@ -322,13 +386,15 @@ public class Jugador {
 
 			//GIMNASIO 2
 			if (colisionEntrada10 == true) {
+				velocidad = 4;
 				aj.mapaActual = 10;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
-			} 	
+				MundoX = aj.tamPantalla * 23;
+				MundoY = aj.tamPantalla * 19;
+			} 
 
 			//MUSEO
 			if (colisionEntrada11 == true) {
+				velocidad = 4;
 				aj.mapaActual = 11;
 				MundoX = aj.tamPantalla * 27;
 				MundoY = aj.tamPantalla * 20;
@@ -386,7 +452,7 @@ public class Jugador {
 			}
 			break;
 		}
-		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 50, 50, null);
+		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 85, 85, null);
 	}
 
 }

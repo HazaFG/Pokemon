@@ -13,8 +13,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 
 	
 	//CONFIGURACIONES DE PANTALLA
-	final int escalaOriginal = 7;
-	final int escala = 6;
+	final int escalaOriginal = 9;
+	final int escala = 9;
 		
 	public final int tamPantalla = escalaOriginal * escala; //25x25 CUADROS
 	public final int maxColPantalla = 30;
