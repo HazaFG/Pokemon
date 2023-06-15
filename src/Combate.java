@@ -303,9 +303,9 @@ public void dibujar(Graphics2D g2) {
 								System.out.println("ok");
 								
 								//se manda al centro pokemon
-								aj.mapaActual = 4;
-								j.MundoX = aj.tamPantalla * 21;
-								j.MundoY = aj.tamPantalla * 19;
+								//aj.mapaActual = 4;
+								//j.MundoX = aj.tamPantalla * 21;
+								//j.MundoY = aj.tamPantalla * 19;
 							}
 						}else {
 							//muere el enemigo

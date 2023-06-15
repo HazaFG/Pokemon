@@ -55,5 +55,11 @@ public class Tile {
 	public boolean colisionSalida11 = false;
 	
 	public boolean colisionNpc1 = false;
+	public boolean colisionNpc2 = false;
+	public boolean colisionNpc3 = false;
+	public boolean colisionNpc4 = false;
+	public boolean colisionNpc5 = false;
+	
+	public boolean colisionNpc6 = false;
 
 }

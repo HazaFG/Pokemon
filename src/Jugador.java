@@ -18,9 +18,22 @@ public class Jugador {
 	public final int pantallaX;
 	public final int pantallaY;
 	
+    public boolean mensajeMostrado = false;
+	
+	
 	boolean dialogoEjecutado = false;
+	boolean dialogoEjecutado2 = false;
+	boolean dialogoEjecutado3 = false;
+	boolean dialogoEjecutado4 = false;
+	boolean dialogoEjecutado5 = false;
+	boolean dialogoEjecutado6 = false;
 	
 	DialogoNpc1 n1 = new DialogoNpc1();
+	DialogoNpc2 n2 = new DialogoNpc2();
+	DialogoNpc3 n3 = new DialogoNpc3();
+	DialogoNpc4 n4 = new DialogoNpc4();
+	DialogoTienda n5 = new DialogoTienda();
+	DialogoNpc6 n6 = new DialogoNpc6();
 
 	public int velocidad;
 	public String direccion;
@@ -66,6 +79,12 @@ public class Jugador {
 	public boolean colisionSalidaPiso = false;
 	
 	public boolean colisionNpc1 = false;
+	public boolean colisionNpc2 = false;
+	public boolean colisionNpc3 = false;
+	public boolean colisionNpc4 = false;
+	public boolean colisionNpc5 = false;
+	
+	public boolean colisionNpc6 = false;
 	
 	public int hitBoxX,hitBoxY;
 	
@@ -94,6 +113,7 @@ public class Jugador {
 		hitBoxX = hitBox.x;
 		hitBoxY = hitBox.y;
 		
+		
 		Snorlax snor = new Snorlax();
 		Machoke zumaya = new Machoke();
 		Koffing kof = new Koffing();
@@ -113,8 +133,8 @@ public class Jugador {
 	}
 	public void posicionBase() {
 		
-		MundoX = aj.tamPantalla * 27;
-		MundoY = aj.tamPantalla * 199;
+		MundoX = aj.tamPantalla * 22; // 27 // 22
+		MundoY = aj.tamPantalla * 16; //  // 16
 		velocidad = 4;
 		direccion = "abajo";
 		
@@ -236,6 +256,8 @@ public class Jugador {
 			
 			//LABORATRIO
 			if (colisionEntrada1 == true) {
+				aj.stopMusic();
+				aj.playMusic(7);
 				aj.mapaActual = 1;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 22;
@@ -244,6 +266,8 @@ public class Jugador {
 
 			//CASA RIVAL
 			if (colisionEntrada2 == true) {
+				aj.stopMusic();
+				aj.playMusic(9);
 				aj.mapaActual = 2;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 19;
@@ -251,10 +275,13 @@ public class Jugador {
 			}
 			
 			if(colisionSalida1 == true || colisionSalidaPiso == true || colisionSalida3 == true || colisionSalida4 == true || colisionSalida5 == true || colisionSalida6 == true || colisionSalida8 == true || colisionSalida10 == true) {
+				aj.stopMusic();
 				
 				switch(aj.mapaActual) {
 				
 				case 1: // LABORATORIO
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 32;
 					MundoY = aj.tamPantalla * 199;
@@ -262,6 +289,8 @@ public class Jugador {
 					break;
 					
 				case 2: // CASA DEL RIVAL
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 36;
 					MundoY = aj.tamPantalla * 192;
@@ -269,6 +298,8 @@ public class Jugador {
 					break;
 					
 				case 3: // CASA DEL JUGADOR
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 26;
 					MundoY = aj.tamPantalla * 192;
@@ -276,6 +307,8 @@ public class Jugador {
 					break;
 					
 				case 4: // Pokemon CENTER
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 27;
 					MundoY = aj.tamPantalla * 132;
@@ -283,6 +316,8 @@ public class Jugador {
 					break;
 					
 				case 5: // POKEMON MALL
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 34;
 					MundoY = aj.tamPantalla * 127;
@@ -290,6 +325,8 @@ public class Jugador {
 					break;
 					
 				case 6: // POKEMON ESCUELA
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 25;
 					MundoY = aj.tamPantalla * 125;
@@ -297,6 +334,8 @@ public class Jugador {
 					break;
 					
 				case 7: // POKEMON Gimnasio
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 32;
 					MundoY = aj.tamPantalla * 116;
@@ -304,6 +343,8 @@ public class Jugador {
 					break;
 					
 				case 8: // POKEMON CENTER 2
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 17;
 					MundoY = aj.tamPantalla *35;
@@ -311,6 +352,8 @@ public class Jugador {
 					break;
 					
 				case 9: // TIENDA 2
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 31;
 					MundoY = aj.tamPantalla * 21;
@@ -318,6 +361,8 @@ public class Jugador {
 					break;
 					
 				case 10: // GIMNASIO 2
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 19;
 					MundoY = aj.tamPantalla * 21;
@@ -325,6 +370,8 @@ public class Jugador {
 					break;
 					
 				case 11: // MUSEO
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 20;
 					MundoY = aj.tamPantalla * 8;
@@ -343,6 +390,8 @@ public class Jugador {
 			
 			//CASA JUGADOR
 			if (colisionEntrada3 == true) {
+				aj.stopMusic();
+				aj.playMusic(10);
 				aj.mapaActual = 3;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 20;
@@ -360,6 +409,8 @@ public class Jugador {
 
 			//CENTRO POKEMON 1 - 4
 			if (colisionEntrada4 == true) {
+				aj.stopMusic();
+				aj.playMusic(8);
 				aj.mapaActual = 4;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 21;
@@ -368,6 +419,9 @@ public class Jugador {
 
 			//TIENDA 1
 			if (colisionEntrada5 == true) {
+				mensajeMostrado = false;
+				aj.stopMusic();
+				aj.playMusic(5);
 				aj.mapaActual = 5;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 20;
@@ -376,6 +430,8 @@ public class Jugador {
 
 			//ESCUELA 1
 			if (colisionEntrada6 == true) {
+				aj.stopMusic();
+				aj.playMusic(9);
 				velocidad = 4;
 				aj.mapaActual = 6;
 				MundoX = aj.tamPantalla * 22;
@@ -384,6 +440,8 @@ public class Jugador {
 
 			//GIMNASIO 1
 			if (colisionEntrada7 == true) {
+				aj.stopMusic();
+				aj.playMusic(6);
 				velocidad = 4;
 				aj.mapaActual = 7;
 				MundoX = aj.tamPantalla * 23;
@@ -392,6 +450,8 @@ public class Jugador {
 			
 			//CENTRO POKEMON 2
 			if (colisionEntrada8 == true) {
+				aj.stopMusic();
+				aj.playMusic(7);
 				velocidad = 4;
 				aj.mapaActual = 8;
 				MundoX = aj.tamPantalla * 21;
@@ -400,6 +460,9 @@ public class Jugador {
 
 			//TIENDA 2
 			if (colisionEntrada9 == true) {
+				mensajeMostrado = false;
+				aj.stopMusic();
+				aj.playMusic(5);
 				velocidad = 4;
 				aj.mapaActual = 9;
 				MundoX = aj.tamPantalla * 27;
@@ -408,6 +471,8 @@ public class Jugador {
 
 			//GIMNASIO 2
 			if (colisionEntrada10 == true) {
+				aj.stopMusic();
+				aj.playMusic(6);
 				velocidad = 4;
 				aj.mapaActual = 10;
 				MundoX = aj.tamPantalla * 23;
@@ -416,18 +481,67 @@ public class Jugador {
 			
 			//MUSEO
 			if (colisionEntrada11 == true) {
+				aj.stopMusic();
+				aj.playMusic(9);
 				velocidad = 4;
 				aj.mapaActual = 11;
 				MundoX = aj.tamPantalla * 23;
 				MundoY = aj.tamPantalla * 19;
-			} 	
+			}  	
 			
 			
 			if (colisionNpc1 && !dialogoEjecutado) {
 			    n1.setVisible(true);
 			    dialogoEjecutado = true; // Marca que el diálogo ya se ha ejecutado una vez
-			}	
+			    aj.monedas+=4;
+			}
+			
+			if (colisionNpc2 && !dialogoEjecutado2) {
+			    n2.setVisible(true);
+			    dialogoEjecutado2 = true; // Marca que el diálogo ya se ha ejecutado una vez
+			}
+			
+			if (colisionNpc3 && !dialogoEjecutado3) {
+			    n3.setVisible(true);
+			    dialogoEjecutado3 = true; // Marca que el diálogo ya se ha ejecutado una vez
+			    aj.monedas +=3;
+			}
+			if (colisionNpc4 && !dialogoEjecutado4) {
+			    n4.setVisible(true);
+			    dialogoEjecutado4 = true; // Marca que el diálogo ya se ha ejecutado una vez
+			    aj.monedas +=2;
+			}
+			
+			if (colisionNpc6 && !dialogoEjecutado6) {
+			    n6.setVisible(true);
+			    dialogoEjecutado6 = true; // Marca que el diálogo ya se ha ejecutado una vez
+			    aj.monedas +=2;
+			}
+			
+			if (colisionNpc5 && !dialogoEjecutado5) {
+				
+		        if (!mensajeMostrado) {
+				int opcion = JOptionPane.showOptionDialog(null, "¿Deseas comprar Pokebolas?", "Tienda Pokemon", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
+			    if (opcion == JOptionPane.YES_OPTION) {
+		            if(aj.monedas>=2) {
+		            	aj.monedas-=2;
+		            	aj.pokeballs+=1;
+		            }else {
+		            	System.out.println("No hay monedas papu");
+				    	JOptionPane.showMessageDialog(null, "NO TIENES MONEDAS!", null, JOptionPane.WARNING_MESSAGE);
+
+		            }
+			         
+			    } else if (opcion == JOptionPane.NO_OPTION) {
+			    	JOptionPane.showMessageDialog(null, "GRACIAS POR SU PREFERENCIA!", null, JOptionPane.WARNING_MESSAGE);
+
+			    }
+	            mensajeMostrado = true;
+			    
+		       } 
+			}
 		}
+		
 	}
 }
 	
@@ -482,22 +596,24 @@ public class Jugador {
 		}
 		
 		try {
-			if (auxPokebola2 !=4) {					
-				auxPokebola2++;
-				}else {
-					auxPokebola2 = 1;
-				}
-			if (auxMoneda !=8) {			
-				auxMoneda++;
-				}else {
-					auxMoneda = 1;
-				}
-			pokebola2  = ImageIO.read(getClass().getResourceAsStream("/Batalla/pokebola_"+auxPokebola2+".png"));
-			moneda  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Monedas"+auxMoneda+".png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            if (auxPokebola2 !=49) {
+                auxPokebola2++;
+                }else {
+                    auxPokebola2 = 11;
+                }
+            if (auxMoneda !=8) {
+                auxMoneda++;
+                }else {
+                    auxMoneda = 1;
+                }
+            double auxPok = Math.ceil(auxPokebola2/10);
+            System.out.println(auxPok);
+            pokebola2  = ImageIO.read(getClass().getResourceAsStream("/Batalla/pokebola_"+(int)Math.ceil(auxPokebola2/10)+".png"));
+            moneda  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Monedas"+auxMoneda+".png"));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 		Font font = new Font("Copperplate Gothic Bold", Font.BOLD, 24);
         g2.setFont(font);
         g2.setColor(Color.white);
@@ -507,7 +623,7 @@ public class Jugador {
 		
 		g2.drawImage(moneda, 30, 30, 50, 50, null);
 		g2.drawImage(pokebola2, 30, 90, 50, 50, null);
-		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 120, 120, null);
+		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 105, 105, null);
 	}
 
 }

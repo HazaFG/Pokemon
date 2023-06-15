@@ -23,12 +23,14 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public int anchoPantalla = tamPantalla * maxColPantalla; // 1015 PIXELES
 	public int alturaPantalla = tamPantalla * maxFilPantalla; // 540 PIXELES
 	
+	Sound sound = new Sound();
+	
 	//FPS
 	int FPS = 60;
 	
 	//CAMBIO DE MAPA
 	public final int maximoMapa = 15;
-	public int mapaActual = 0;	
+	public int mapaActual = 12;	
 	
 	//CONFIGURACIÓN DE MUNDO
 	public final int mundoFil = 800; //Las originales serán 83
@@ -36,7 +38,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAnchoMundo = mundoCol * tamPantalla;
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
-	public boolean estadoCombate = true;
+	public boolean estadoCombate = false;
 	public boolean stopCombate 	 = false;
 	public boolean stopSeleccion = false;
 	public boolean stopAtaque = false;
@@ -68,6 +70,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public void iniciarHiloJuego() {
 		hiloJuego = new Thread(this);
 		hiloJuego.start();
+		
+		playMusic(0);
 	}
 	
 	@Override
@@ -123,6 +127,22 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 			jugador.dibujar(g2);
 		}
 		g2.dispose();			
+	}
+	
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	
+	public void stopMusic(){
+		sound.stop();
+	}
+	
+	public void playSE(int i) {
+		
+		sound.setFile(i);
+		sound.play();
 	}
 	
 	public Pokemon pokemonRandom() {

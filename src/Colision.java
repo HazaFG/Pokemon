@@ -125,6 +125,26 @@ public class Colision {
 				jugador.colisionNpc1 = true;
 			}
 			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc2 == true || aj.ControladorT.tile[tileNum2].colisionNpc2 == true) {
+				jugador.colisionNpc2 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc3 == true || aj.ControladorT.tile[tileNum2].colisionNpc3 == true) {
+				jugador.colisionNpc3 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc4 == true || aj.ControladorT.tile[tileNum2].colisionNpc4 == true) {
+				jugador.colisionNpc4 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc5 == true || aj.ControladorT.tile[tileNum2].colisionNpc5 == true) {
+				jugador.colisionNpc5 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc6 == true || aj.ControladorT.tile[tileNum2].colisionNpc6 == true) {
+				jugador.colisionNpc6 = true;
+			}
+			
 			break;
 			
 		case "abajo":
@@ -225,6 +245,25 @@ public class Colision {
 			}
 			if(aj.ControladorT.tile[tileNum1].colisionNpc1 == true || aj.ControladorT.tile[tileNum2].colisionNpc1 == true) {
 				jugador.colisionNpc1 = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionNpc2 == true || aj.ControladorT.tile[tileNum2].colisionNpc2 == true) {
+				jugador.colisionNpc2 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc3 == true || aj.ControladorT.tile[tileNum2].colisionNpc3 == true) {
+				jugador.colisionNpc3 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc4 == true || aj.ControladorT.tile[tileNum2].colisionNpc4 == true) {
+				jugador.colisionNpc4 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc5 == true || aj.ControladorT.tile[tileNum2].colisionNpc5 == true) {
+				jugador.colisionNpc5 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc6 == true || aj.ControladorT.tile[tileNum2].colisionNpc6 == true) {
+				jugador.colisionNpc6 = true;
 			}
 			
 			break;
@@ -330,6 +369,25 @@ public class Colision {
 			if(aj.ControladorT.tile[tileNum1].colisionNpc1 == true || aj.ControladorT.tile[tileNum2].colisionNpc1 == true) {
 				jugador.colisionNpc1 = true;
 			}
+			if(aj.ControladorT.tile[tileNum1].colisionNpc2 == true || aj.ControladorT.tile[tileNum2].colisionNpc2 == true) {
+				jugador.colisionNpc2 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc3 == true || aj.ControladorT.tile[tileNum2].colisionNpc3 == true) {
+				jugador.colisionNpc3 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc4 == true || aj.ControladorT.tile[tileNum2].colisionNpc4 == true) {
+				jugador.colisionNpc4 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc5 == true || aj.ControladorT.tile[tileNum2].colisionNpc5 == true) {
+				jugador.colisionNpc5 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc6 == true || aj.ControladorT.tile[tileNum2].colisionNpc6 == true) {
+				jugador.colisionNpc6 = true;
+			}
 			
 			break;
 		case "derecha":
@@ -434,6 +492,25 @@ public class Colision {
 			}
 			if(aj.ControladorT.tile[tileNum1].colisionNpc1 == true || aj.ControladorT.tile[tileNum2].colisionNpc1 == true) {
 				jugador.colisionNpc1 = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionNpc2 == true || aj.ControladorT.tile[tileNum2].colisionNpc2 == true) {
+				jugador.colisionNpc2 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc3 == true || aj.ControladorT.tile[tileNum2].colisionNpc3 == true) {
+				jugador.colisionNpc3 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc4 == true || aj.ControladorT.tile[tileNum2].colisionNpc4 == true) {
+				jugador.colisionNpc4 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc5 == true || aj.ControladorT.tile[tileNum2].colisionNpc5 == true) {
+				jugador.colisionNpc5 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionNpc6 == true || aj.ControladorT.tile[tileNum2].colisionNpc6 == true) {
+				jugador.colisionNpc6 = true;
 			}
 			
 			break;
