@@ -354,13 +354,12 @@ public void dibujar(Graphics2D g2) {
 					//comprueba si el equipo del jugador ya esta lleno
 					if(numeroDePokemones() < 6) {
 						
-						aj.stopPokebola = true;
 						//rand
 						aj.teclas.aceptar = false;
 						if (atraparRand()) {
 							//lanza la pokeball y captura
 							
-							
+							aj.stopPokebola = true;
 							aj.jugador.equipo[numeroDePokemones()] = enemigo;
 							System.out.println("pokemon capturado: "+aj.jugador.equipo[numeroDePokemones()-1]);
 //							aj.estadoCombate = false;
@@ -381,12 +380,13 @@ public void dibujar(Graphics2D g2) {
 									//pantalla de seleccion de pokemon
 									menuEquipoSinDaño();
 								}else {
-									aj.estadoCombate = false;
 									seleccionAtaque = 1;
 								}
 							}
 						}
 					}else {
+						aj.teclas.aceptar = false;
+						seleccionAtaque = 1;
 						System.out.println("el equipo ya esta lleno");
 					}
 				}
@@ -404,6 +404,7 @@ public void dibujar(Graphics2D g2) {
 					//rand
 					if (huidaRand()) {
 						aj.estadoCombate = false;
+						aj.teclas.aceptar = false;
 						seleccionAtaque = 1;
 					}else {
 						//aqui ataca el pokemon enemigo
@@ -418,6 +419,7 @@ public void dibujar(Graphics2D g2) {
 								//pantalla de seleccion de pokemon
 								menuEquipoSinDaño();
 							}else {
+								aj.teclas.aceptar = false;
 								aj.estadoCombate = false;
 								seleccionAtaque = 1;
 							}
