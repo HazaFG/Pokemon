@@ -20,6 +20,8 @@ public class Combate {
 
 	Graphics2D g2;
 	
+	Jugador j;
+	
 	BufferedImage imagen,imagenPokemonAliado,imagenPokemonEnemigo;
 	BufferedImage pokebola;
 	
@@ -225,7 +227,7 @@ public void dibujar(Graphics2D g2) {
 								}
 								
 								if(aj.teclas.espacio) {
-
+									
 									ataques(aliado, enemigo, seleccionAtaque);
 									aj.stopAtaque=true;
 
@@ -301,6 +303,9 @@ public void dibujar(Graphics2D g2) {
 								System.out.println("ok");
 								
 								//se manda al centro pokemon
+								aj.mapaActual = 4;
+								j.MundoX = aj.tamPantalla * 21;
+								j.MundoY = aj.tamPantalla * 19;
 							}
 						}else {
 							//muere el enemigo
@@ -351,8 +356,11 @@ public void dibujar(Graphics2D g2) {
 				
 				if(aj.teclas.aceptar == true) {
 					
-					//comprueba si el equipo del jugador ya esta lleno
-					if(numeroDePokemones() < 6) {
+					if (aj.pokeballs > 0)
+	                    aj.pokeballs -= 1;
+
+	                    //comprueba si el equipo del jugador ya esta lleno
+	                    if(numeroDePokemones() < 6 && aj.pokeballs > 0) {
 						
 						//rand
 						aj.teclas.aceptar = false;
@@ -387,7 +395,8 @@ public void dibujar(Graphics2D g2) {
 					}else {
 						aj.teclas.aceptar = false;
 						seleccionAtaque = 1;
-						System.out.println("el equipo ya esta lleno");
+						
+						System.out.println("el equipo ya esta lleno o no tienes pokebolas JAJAJA");
 					}
 				}
 				

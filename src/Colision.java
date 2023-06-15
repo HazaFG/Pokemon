@@ -121,6 +121,9 @@ public class Colision {
 			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
 				jugador.colisionSalidaPiso = true;
 			}
+			if(aj.ControladorT.tile[tileNum1].colisionNpc1 == true || aj.ControladorT.tile[tileNum2].colisionNpc1 == true) {
+				jugador.colisionNpc1 = true;
+			}
 			
 			break;
 			
@@ -219,6 +222,9 @@ public class Colision {
 			}
 			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
 				jugador.colisionSalidaPiso = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionNpc1 == true || aj.ControladorT.tile[tileNum2].colisionNpc1 == true) {
+				jugador.colisionNpc1 = true;
 			}
 			
 			break;
@@ -321,6 +327,9 @@ public class Colision {
 			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
 				jugador.colisionSalidaPiso = true;
 			}
+			if(aj.ControladorT.tile[tileNum1].colisionNpc1 == true || aj.ControladorT.tile[tileNum2].colisionNpc1 == true) {
+				jugador.colisionNpc1 = true;
+			}
 			
 			break;
 		case "derecha":
@@ -422,6 +431,9 @@ public class Colision {
 			}
 			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
 				jugador.colisionSalidaPiso = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionNpc1 == true || aj.ControladorT.tile[tileNum2].colisionNpc1 == true) {
+				jugador.colisionNpc1 = true;
 			}
 			
 			break;

@@ -53,5 +53,7 @@ public class Tile {
 	//COLISION MUSEO
 	public boolean colisionEntrada11 = false;
 	public boolean colisionSalida11 = false;
+	
+	public boolean colisionNpc1 = false;
 
 }

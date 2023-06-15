@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -10,9 +11,16 @@ import javax.swing.JOptionPane;
 
 public class Jugador {
 	
+	BufferedImage  pokebola2,moneda;
+	int auxPokebola2 = 1, auxMoneda = 1;
+	
 	public int MundoX , MundoY;
 	public final int pantallaX;
 	public final int pantallaY;
+	
+	boolean dialogoEjecutado = false;
+	
+	DialogoNpc1 n1 = new DialogoNpc1();
 
 	public int velocidad;
 	public String direccion;
@@ -56,6 +64,8 @@ public class Jugador {
 	
 	public boolean colisionEntradaPiso = false;
 	public boolean colisionSalidaPiso = false;
+	
+	public boolean colisionNpc1 = false;
 	
 	public int hitBoxX,hitBoxY;
 	
@@ -411,6 +421,12 @@ public class Jugador {
 				MundoX = aj.tamPantalla * 23;
 				MundoY = aj.tamPantalla * 19;
 			} 	
+			
+			
+			if (colisionNpc1 && !dialogoEjecutado) {
+			    n1.setVisible(true);
+			    dialogoEjecutado = true; // Marca que el diálogo ya se ha ejecutado una vez
+			}	
 		}
 	}
 }
@@ -464,7 +480,34 @@ public class Jugador {
 			}
 			break;
 		}
-		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 85, 85, null);
+		
+		try {
+			if (auxPokebola2 !=4) {					
+				auxPokebola2++;
+				}else {
+					auxPokebola2 = 1;
+				}
+			if (auxMoneda !=8) {			
+				auxMoneda++;
+				}else {
+					auxMoneda = 1;
+				}
+			pokebola2  = ImageIO.read(getClass().getResourceAsStream("/Batalla/pokebola_"+auxPokebola2+".png"));
+			moneda  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Monedas"+auxMoneda+".png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Font font = new Font("Copperplate Gothic Bold", Font.BOLD, 24);
+        g2.setFont(font);
+        g2.setColor(Color.white);
+		
+		g2.drawString(""+aj.monedas,90,60);
+		g2.drawString(""+aj.pokeballs,90,120);
+		
+		g2.drawImage(moneda, 30, 30, 50, 50, null);
+		g2.drawImage(pokebola2, 30, 90, 50, 50, null);
+		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 120, 120, null);
 	}
 
 }
