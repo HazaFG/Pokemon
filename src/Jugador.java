@@ -84,9 +84,15 @@ public class Jugador {
 		Snorlax snor = new Snorlax();
 		Machoke zumaya = new Machoke();
 		Koffing kof = new Koffing();
+		Rattata rat = new Rattata();
+		Pidgey pid = new Pidgey();
+		Pikachu pika = new Pikachu();
 		equipo[0] = snor;
 		equipo[1] = zumaya;
-		//equipo[2] = kof;
+		equipo[2] = kof;
+		equipo[3] = rat;
+		equipo[4] = pid;
+		equipo[5] = pika;
 		
 		
 		posicionBase();
