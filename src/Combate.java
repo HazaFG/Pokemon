@@ -215,10 +215,8 @@ public void dibujar(Graphics2D g2) {
 							if(equipoVivo()) {
 								
 								//pantalla de seleccion de pokemon
-								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_seleccion.png"));
-								
-								//cambiarPokemon(1);
-								inicializarValores();
+								menuEquipo();
+
 							}else {
 								aj.estadoCombate = false;
 								seleccionAtaque = 1;
@@ -278,6 +276,7 @@ public void dibujar(Graphics2D g2) {
 					
 					//comprueba si el equipo del jugador ya esta lleno
 					if(numeroDePokemones() < 6) {
+						//rand
 						if (false) {
 							//lanza la pokeball y captura
 							aj.jugador.equipo[numeroDePokemones()] = enemigo;
@@ -298,8 +297,7 @@ public void dibujar(Graphics2D g2) {
 								if(equipoVivo()) {
 									
 									//pantalla de seleccion de pokemon
-									//cambiarPokemon(1);
-									inicializarValores();
+									menuEquipo();
 								}else {
 									aj.estadoCombate = false;
 									seleccionAtaque = 1;
@@ -321,6 +319,7 @@ public void dibujar(Graphics2D g2) {
 				}
 					
 				if(aj.teclas.aceptar == true) {
+					//rand
 					if (false) {
 						aj.estadoCombate = false;
 						seleccionAtaque = 1;
@@ -335,8 +334,7 @@ public void dibujar(Graphics2D g2) {
 							if(equipoVivo()) {
 								
 								//pantalla de seleccion de pokemon
-								//cambiarPokemon(1);
-								inicializarValores();
+								menuEquipo();
 							}else {
 								aj.estadoCombate = false;
 								seleccionAtaque = 1;
