@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -9,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Jugador {
+	
+	BufferedImage  pokebola2,moneda;
+	int auxPokebola2 = 1, auxMoneda = 1;
 	
 	public int MundoX , MundoY;
 	public final int pantallaX;
@@ -464,6 +468,33 @@ public class Jugador {
 			}
 			break;
 		}
+		
+		try {
+			if (auxPokebola2 !=4) {					
+				auxPokebola2++;
+				}else {
+					auxPokebola2 = 1;
+				}
+			if (auxMoneda !=8) {			
+				auxMoneda++;
+				}else {
+					auxMoneda = 1;
+				}
+			pokebola2  = ImageIO.read(getClass().getResourceAsStream("/Batalla/pokebola_"+auxPokebola2+".png"));
+			moneda  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Monedas"+auxMoneda+".png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Font font = new Font("Copperplate Gothic Bold", Font.BOLD, 24);
+        g2.setFont(font);
+        g2.setColor(Color.white);
+		
+		g2.drawString(""+aj.monedas,90,60);
+		g2.drawString(""+aj.pokeballs,90,120);
+		
+		g2.drawImage(moneda, 30, 30, 50, 50, null);
+		g2.drawImage(pokebola2, 30, 90, 50, 50, null);
 		g2.drawImage(imagen, pantallaX-10, pantallaY-15, 85, 85, null);
 	}
 
