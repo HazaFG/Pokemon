@@ -210,6 +210,7 @@ public void dibujar(Graphics2D g2) {
 						
 						//si aliado muere
 						if(aliado.stats[0] <= 0) {
+
 							System.out.println("aliado muere");
 							
 							if(equipoVivo()) {
@@ -645,7 +646,9 @@ public void menuEquipo() {
 		try {
 			switch(seleccionPokemon) {
 			case 1:
-				imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
 				if (aj.teclas.abajo == true){
 					seleccionPokemon = 3;
 				}else if(aj.teclas.dere == true) {
@@ -665,7 +668,9 @@ public void menuEquipo() {
 				}
 				break;
 			case 2:
-				imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
 				if (aj.teclas.abajo == true){
 					seleccionPokemon = 4;
 				}else if(aj.teclas.izqui == true) {
@@ -683,7 +688,9 @@ public void menuEquipo() {
 				}
 				break;
 			case 3:
-				imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
 				if (aj.teclas.abajo == true){
 					seleccionPokemon = 5;
 				}else if(aj.teclas.dere == true) {
@@ -703,7 +710,9 @@ public void menuEquipo() {
 				}
 				break;
 			case 4:
-				imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
 				if (aj.teclas.abajo == true){
 					seleccionPokemon = 5;
 				}else if(aj.teclas.izqui == true) {
@@ -723,7 +732,8 @@ public void menuEquipo() {
 				}
 				break;
 			case 5:
-				imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
 				if (aj.teclas.arriba == true){
 					seleccionPokemon = 3;
 				}else if(aj.teclas.dere == true) {
@@ -748,8 +758,7 @@ public void menuEquipo() {
 		}
 	}
 	
-	
-	if(aj.teclas.aceptar == false && aj.stopSeleccion == true)
+	if(aj.teclas.aceptar == false && aj.stopSeleccion == false)
 		//aqui ataca el pokemon enemigo
 		ataqueEnemigo(aliado, enemigo);
 	
@@ -760,8 +769,7 @@ public void menuEquipo() {
 		if(equipoVivo()) {
 			
 			//pantalla de seleccion de pokemon
-			//cambiarPokemon(1);
-			inicializarValores();
+			menuEquipo();
 		}else {
 			aj.estadoCombate = false;
 			seleccionAtaque = 1;

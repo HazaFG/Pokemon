@@ -89,10 +89,10 @@ public class Jugador {
 		Pikachu pika = new Pikachu();
 		equipo[0] = snor;
 		equipo[1] = zumaya;
-		equipo[2] = kof;
-		equipo[3] = rat;
-		equipo[4] = pid;
-		equipo[5] = pika;
+		//equipo[2] = kof;
+		//equipo[3] = rat;
+		//equipo[4] = pid;
+		//equipo[5] = pika;
 		
 		
 		posicionBase();
