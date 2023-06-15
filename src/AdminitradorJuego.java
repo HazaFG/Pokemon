@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -36,8 +37,17 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
 	public boolean estadoCombate = false;
-	public boolean stopCombate = false;
-	JButton btn = new JButton();
+	public boolean stopCombate 	 = false;
+	public boolean stopSeleccion = false;
+	public boolean stopAtaque = false;
+	public boolean stopPokebola = false;
+	
+	public int pokemonAliadoX = 100, pokemonAliadoY = 380;
+	public int pokemonEnemigoX = 500, pokemonEnemigoY = 300;
+	public int pokebolaX = -100, pokebolaY = 500;
+	
+	public int monedas = 0;
+	public int pokeballs = 5;
 	
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles(this);
@@ -113,5 +123,18 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 			jugador.dibujar(g2);
 		}
 		g2.dispose();			
+	}
+	
+	public Pokemon pokemonRandom() {
+		Pokemon pokemon;
+		
+		Pokemon[] pokemones = {new Pikachu(), new Growlithe(), new Snorlax(), new Koffing(), new Gengar(),
+							   new Machoke(), new Magikarp(), new Pidgey(), new Rattata(), new Poliwag()};
+		
+		Random random = new Random();
+		
+		pokemon = pokemones[random.nextInt(10)];
+		
+		return pokemon;
 	}
 }

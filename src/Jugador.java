@@ -21,8 +21,6 @@ public class Jugador {
 	
 	public boolean colisionHierva = false;
 	
-	public int mapaJugador = 0;
-	
 	public boolean colisionEntrada1 = false;
 	public boolean colisionSalida1 = false;
 	
@@ -78,7 +76,6 @@ public class Jugador {
 		this.teclas = teclas;
 		this.combate = combate;
 		
-		
 		pantallaX = aj.anchoPantalla / 6;
 		pantallaY = aj.alturaPantalla  / 5;
 		
@@ -87,20 +84,31 @@ public class Jugador {
 		hitBoxX = hitBox.x;
 		hitBoxY = hitBox.y;
 		
-		//Pikachu pika = new Pikachu();
 		Snorlax snor = new Snorlax();
+		Machoke zumaya = new Machoke();
+		Koffing kof = new Koffing();
+		Rattata rat = new Rattata();
+		Pidgey pid = new Pidgey();
+		Pikachu pika = new Pikachu();
 		equipo[0] = snor;
+		equipo[1] = zumaya;
+		equipo[2] = kof;
+		equipo[3] = rat;
+		//equipo[4] = pid;
+		//equipo[5] = pika;
+		
 		
 		posicionBase();
 		getImagenJugador();
 	}
 	public void posicionBase() {
-		MundoX = aj.tamPantalla * 27; // 27
-		MundoY = aj.tamPantalla * 199; // 199
-		velocidad = 5;
+		
+		MundoX = aj.tamPantalla * 27;
+		MundoY = aj.tamPantalla * 199;
+		velocidad = 4;
 		direccion = "abajo";
+		
 	}
-	
 	
 	public void getImagenJugador() {
 		try {
@@ -211,11 +219,8 @@ public class Jugador {
 			if (colisionHierva == true) {
 				if (hiervaRand()) {	
 				combate.inicializarValores();
-				//combate.comenzarCombate();
-				//aj.estadoCombate = true;
-//				if(combate.combate == true) {
-//					combate.comenzarCombate();
-//				}
+				combate.setEnemigo(aj.pokemonRandom());
+				aj.estadoCombate = true;
 				}
 			}
 			
@@ -411,8 +416,8 @@ public class Jugador {
 }
 	
 	public boolean hiervaRand() {
-//		int num = (int)Math.floor(Math.random()*100+1);
-		int num = (int)Math.floor(Math.random()*2+1);
+		int num = (int)Math.floor(Math.random()*100+1);
+		//int num = (int)Math.floor(Math.random()*2+1);
 		System.out.println("Numero: "+num);
 		if (num == 1) {
 			return true;

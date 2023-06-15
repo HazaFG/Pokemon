@@ -123,10 +123,10 @@ public class SplashMenu extends JDialog {
             public void run() {
                 try {
 
-                    while (x <= 10) { // ORIGINALMENTE SON 100
+                    while (x <= 100) {
                         barra.setValue(x);
                         x++;
-                        Thread.sleep(20);
+                        Thread.sleep(5);
                         /*
                         if (x == 5) {
                             texto = "Cargando...";
