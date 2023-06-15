@@ -72,9 +72,9 @@ public class Controles implements KeyListener{
 			dere = false;
 
 		}
-		if(code == KeyEvent.VK_I && !aj.stopCombate) {
-			aceptar = false;
-		}
+//		if(code == KeyEvent.VK_I && !aj.stopCombate && aj.stopSeleccion) {
+//			aceptar = false;
+//		}
 		if(code == KeyEvent.VK_O) {
 			cancelar = false;
 		}

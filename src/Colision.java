@@ -115,6 +115,13 @@ public class Colision {
 				jugador.colisionSalida11 = true;
 			}
 			
+			if(aj.ControladorT.tile[tileNum1].colisionEntradaPiso == true || aj.ControladorT.tile[tileNum2].colisionEntradaPiso == true) {
+				jugador.colisionEntradaPiso = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
+				jugador.colisionSalidaPiso = true;
+			}
+			
 			break;
 			
 		case "abajo":
@@ -205,6 +212,13 @@ public class Colision {
 			}
 			if(aj.ControladorT.tile[tileNum1].colisionSalida11 == true || aj.ControladorT.tile[tileNum2].colisionSalida11 == true) {
 				jugador.colisionSalida11 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionEntradaPiso == true || aj.ControladorT.tile[tileNum2].colisionEntradaPiso == true) {
+				jugador.colisionEntradaPiso = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
+				jugador.colisionSalidaPiso = true;
 			}
 			
 			break;
@@ -301,6 +315,13 @@ public class Colision {
 				jugador.colisionSalida11 = true;
 			}
 			
+			if(aj.ControladorT.tile[tileNum1].colisionEntradaPiso == true || aj.ControladorT.tile[tileNum2].colisionEntradaPiso == true) {
+				jugador.colisionEntradaPiso = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
+				jugador.colisionSalidaPiso = true;
+			}
+			
 			break;
 		case "derecha":
 			jugadorDereCol = (jugadorDereX + jugador.velocidad)/aj.tamPantalla;
@@ -394,6 +415,13 @@ public class Colision {
 			}
 			if(aj.ControladorT.tile[tileNum1].colisionSalida11 == true || aj.ControladorT.tile[tileNum2].colisionSalida11 == true) {
 				jugador.colisionSalida11 = true;
+			}
+			
+			if(aj.ControladorT.tile[tileNum1].colisionEntradaPiso == true || aj.ControladorT.tile[tileNum2].colisionEntradaPiso == true) {
+				jugador.colisionEntradaPiso = true;
+			}
+			if(aj.ControladorT.tile[tileNum1].colisionSalidaPiso == true || aj.ControladorT.tile[tileNum2].colisionSalidaPiso == true) {
+				jugador.colisionSalidaPiso = true;
 			}
 			
 			break;

@@ -19,6 +19,9 @@ public class Tile {
 	public boolean colisionEntrada3 = false;
 	public boolean colisionSalida3 = false;
 	
+	public boolean colisionEntradaPiso = false;
+	public boolean colisionSalidaPiso = false;
+	
 	//COLISION POKEMON CENTER 1
 	public boolean colisionEntrada4 = false;
 	public boolean colisionSalida4 = false;
