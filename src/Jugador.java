@@ -214,7 +214,7 @@ public class Jugador {
 				//
 				if (hiervaRand()) {	
 				combate.inicializarValores();
-				combate.setEnemigo(new Poliwag());
+				combate.setEnemigo(aj.pokemonRandom());
 				//combate.comenzarCombate();
 				aj.estadoCombate = true;
 //				if(combate.combate == true) {

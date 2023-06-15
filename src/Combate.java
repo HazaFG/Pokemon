@@ -16,11 +16,12 @@ import javax.swing.plaf.synth.SynthOptionPaneUI;
 public class Combate {
 	
 	AdminitradorJuego aj;
-	//HiloCombate hiloCombate;
+	HiloCombate hiloCombate;
 
 	Graphics2D g2;
 	
 	BufferedImage imagen,imagenPokemonAliado,imagenPokemonEnemigo;
+	BufferedImage pokebola;
 	
 	BufferedImage[] imagenSeleccion = new BufferedImage[5];
 	String nombreAliado,
@@ -29,6 +30,10 @@ public class Combate {
 	int nivelPokemonAliado = 1,nivelPokemonEnemigo = 1;
 	int vidaMax;
 	int vida;
+	
+	int turno = 0;
+	int aux = 0;
+	int auxPokebola=1;
 	
 	int seleccion = 1;
 	int seleccionAtaque = 1;
@@ -101,21 +106,12 @@ public class Combate {
 		combate(aj.jugador.equipo[0], new Poliwag());
 	}
 	
-	public boolean huidaRand() {
-		int num = (int)Math.floor(Math.random()*2+1);
-		System.out.println("Numero: "+num);
-		if (num == 1) {
-			return true;
-		}
-		return false;
-	}
-	
 
 public void dibujar(Graphics2D g2) {
 		inicializarValores();
 		
 		int fontSize = 18;
-		//hiloCombate = new HiloCombate(aj);
+		hiloCombate = new HiloCombate(aj);
 		
 		try {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
@@ -125,9 +121,82 @@ public void dibujar(Graphics2D g2) {
 			imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombreAliado+"_aliado.png"));
 			imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombreEnemigo+"_enemigo.png"));
 			
-			g2.drawImage(imagenPokemonAliado, 100, 380, 200, 200, null);
+			//ATAQUES
+			if (!aj.stopAtaque) {
+				if (enemigo.stats[5] > enemigo.stats[5]) {
+					 turno = 2;
+				}else {
+					turno = 1;
+				}
+			}
+			else {
+				
+			if(aj.pokemonEnemigoX > 200 && turno == 2) {
+				aj.pokemonEnemigoX -= 30;
+				aj.pokemonEnemigoY += 15;
+			}else if(turno == 2){
+				aj.pokemonEnemigoX = 500;
+				aj.pokemonEnemigoY = 300;
+				if (aux == 0) {
+					aux++;
+					turno = 1;
+				}else {
+					aux = 0;
+					aj.stopAtaque = false;
+					System.out.println("false 1");
+				}
+			}
 			
-			g2.drawImage(imagenPokemonEnemigo, 500, 300, 150, 150, null);
+				
+			if(aj.pokemonAliadoX < 200 && turno == 1) {
+				aj.pokemonAliadoX += 30;
+				aj.pokemonAliadoY -= 30;
+			}else if (turno  == 1){
+				aj.pokemonAliadoX = 100;
+				aj.pokemonAliadoY = 380;
+				if (aux == 0) {
+					aux++;
+					turno = 2;
+				}else {
+					aux = 0;
+					aj.stopAtaque = false;
+					System.out.println("false 2");
+				}
+			}
+			}
+			
+			//POKEBOLA
+			if (aj.stopPokebola && aj.pokebolaX < 550) {
+				aj.pokebolaX += 10;
+				aj.pokebolaY -= 3;
+				pokebola  = ImageIO.read(getClass().getResourceAsStream("/Batalla/pokebola_"+auxPokebola+".png"));
+				if (auxPokebola !=4) {					
+				auxPokebola++;
+				}else {
+					auxPokebola = 1;
+				}
+			}else if (aj.stopPokebola){
+				aj.estadoCombate = false;
+				aj.stopPokebola = false;
+				aj.pokebolaX = -100;
+				aj.pokebolaY = 500;
+			}
+			//JAJAJA SE MUERE
+//			if(aj.stopAtaque = true) {
+//				aj.pokemonAliadoX += 1;
+//				aj.pokemonAliadoY -= 1;
+//			}else {
+//				aj.pokemonAliadoX += 100;
+//				aj.pokemonAliadoY += 380;
+//			}
+			
+			g2.drawImage(imagenPokemonAliado, aj.pokemonAliadoX, aj.pokemonAliadoY, 200, 200, null);
+			
+			
+//			if ()
+			g2.drawImage(imagenPokemonEnemigo, aj.pokemonEnemigoX, aj.pokemonEnemigoY, 150, 150, null);
+			
+			g2.drawImage(pokebola, aj.pokebolaX, aj.pokebolaY, 50, 50, null);
 			
 			switch(seleccion) {
 			case 1:
@@ -158,6 +227,7 @@ public void dibujar(Graphics2D g2) {
 								if(aj.teclas.espacio) {
 
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
 
 								}
 								break;
@@ -172,6 +242,7 @@ public void dibujar(Graphics2D g2) {
 								if(aj.teclas.espacio) {
 
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
 
 								}
 								break;
@@ -185,6 +256,7 @@ public void dibujar(Graphics2D g2) {
 								
 								if(aj.teclas.espacio) {
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
 								}
 								break;
 							case 4:
@@ -198,6 +270,7 @@ public void dibujar(Graphics2D g2) {
 								if(aj.teclas.espacio) {
 
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
 
 								}
 								break;
@@ -226,6 +299,8 @@ public void dibujar(Graphics2D g2) {
 								aj.stopCombate = false;
 								aj.teclas.aceptar = false;
 								System.out.println("ok");
+								
+								//se manda al centro pokemon
 							}
 						}else {
 							//muere el enemigo
@@ -278,14 +353,17 @@ public void dibujar(Graphics2D g2) {
 					
 					//comprueba si el equipo del jugador ya esta lleno
 					if(numeroDePokemones() < 6) {
+						
+						aj.stopPokebola = true;
 						//rand
-						if (false) {
+						aj.teclas.aceptar = false;
+						if (atraparRand()) {
 							//lanza la pokeball y captura
 							
 							
 							aj.jugador.equipo[numeroDePokemones()] = enemigo;
 							System.out.println("pokemon capturado: "+aj.jugador.equipo[numeroDePokemones()-1]);
-							aj.estadoCombate = false;
+//							aj.estadoCombate = false;
 							seleccionAtaque = 1;
 							System.out.println("numero de pokemones: "+numeroDePokemones());
 						}else {
@@ -324,7 +402,7 @@ public void dibujar(Graphics2D g2) {
 					
 				if(aj.teclas.aceptar == true) {
 					//rand
-					if (false) {
+					if (huidaRand()) {
 						aj.estadoCombate = false;
 						seleccionAtaque = 1;
 					}else {
@@ -938,4 +1016,29 @@ public void menuEquipoSinDaño() {
 	
 }
 
+public boolean huidaRand() {
+	boolean escapar;
+	
+	Random random = new Random();
+	
+	if(random.nextInt(3) != 0)
+		escapar = true;
+	else
+		escapar = false;
+	
+	return escapar;
+}
+
+public boolean atraparRand() {
+	boolean atrapar;
+	
+	Random random = new Random();
+	
+	if(random.nextInt(10) >= 4)
+		atrapar = true;
+	else
+		atrapar = false;
+	
+	return atrapar;
+}
 }
