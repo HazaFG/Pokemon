@@ -216,7 +216,7 @@ public void dibujar(Graphics2D g2) {
 							if(equipoVivo()) {
 								
 								//pantalla de seleccion de pokemon
-								menuEquipo();
+								menuEquipoSinDaño();
 
 							}else {
 								aj.estadoCombate = false;
@@ -298,7 +298,7 @@ public void dibujar(Graphics2D g2) {
 								if(equipoVivo()) {
 									
 									//pantalla de seleccion de pokemon
-									menuEquipo();
+									menuEquipoSinDaño();
 								}else {
 									aj.estadoCombate = false;
 									seleccionAtaque = 1;
@@ -335,7 +335,7 @@ public void dibujar(Graphics2D g2) {
 							if(equipoVivo()) {
 								
 								//pantalla de seleccion de pokemon
-								menuEquipo();
+								menuEquipoSinDaño();
 							}else {
 								aj.estadoCombate = false;
 								seleccionAtaque = 1;
@@ -773,6 +773,146 @@ public void menuEquipo() {
 		}else {
 			aj.estadoCombate = false;
 			seleccionAtaque = 1;
+		}
+	}
+	
+	if(aj.teclas.cancelar) {
+//		System.out.println("ok");
+		aj.stopSeleccion = false;
+		aj.teclas.aceptar = false;
+	}
+	
+}
+
+public void menuEquipoSinDaño() {
+//	System.out.println(aj.teclas.aceptar);
+	//hacer menu para seleccionar a que pokemon se desea cambiar
+	//evitar que se pueda seleccionar al pokemon que ya esta peleando
+	
+	aj.stopSeleccion = true;
+	try {
+		imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_seleccion.png"));
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	mostrarEquipo();
+	
+	if(aj.stopSeleccion) {
+
+		try {
+			switch(seleccionPokemon) {
+			case 1:
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
+				if (aj.teclas.abajo == true){
+					seleccionPokemon = 3;
+				}else if(aj.teclas.dere == true) {
+					seleccionPokemon = 2;
+				}
+//
+//				System.out.println(seleccionPokemon);
+				
+				if(aj.teclas.espacio) {
+
+					cambiarPokemon(getPokemonesVivos()[seleccionPokemon-1]);
+					inicializarValores();
+					
+					aj.stopSeleccion = false;
+					aj.teclas.aceptar = false;
+
+				}
+				break;
+			case 2:
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
+				if (aj.teclas.abajo == true){
+					seleccionPokemon = 4;
+				}else if(aj.teclas.izqui == true) {
+					seleccionPokemon = 1;
+				}
+
+				if(aj.teclas.espacio) {
+
+					cambiarPokemon(getPokemonesVivos()[seleccionPokemon-1]);
+					inicializarValores();
+
+					aj.stopSeleccion = false;
+					aj.teclas.aceptar = false;
+					
+				}
+				break;
+			case 3:
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
+				if (aj.teclas.abajo == true){
+					seleccionPokemon = 5;
+				}else if(aj.teclas.dere == true) {
+					seleccionPokemon = 4;
+				}else if(aj.teclas.arriba == true) {
+					seleccionPokemon = 1;
+				}
+
+				if(aj.teclas.espacio) {
+
+					cambiarPokemon(getPokemonesVivos()[seleccionPokemon-1]);
+					inicializarValores();
+
+					aj.stopSeleccion = false;
+					aj.teclas.aceptar = false;
+					
+				}
+				break;
+			case 4:
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				
+				if (aj.teclas.abajo == true){
+					seleccionPokemon = 5;
+				}else if(aj.teclas.izqui == true) {
+					seleccionPokemon = 3;
+				}else if(aj.teclas.arriba == true) {
+					seleccionPokemon = 2;
+				}
+
+				if(aj.teclas.espacio) {
+
+					cambiarPokemon(getPokemonesVivos()[seleccionPokemon-1]);
+					inicializarValores();
+					
+					aj.stopSeleccion = false;
+					aj.teclas.aceptar = false;
+
+				}
+				break;
+			case 5:
+				if (getPokemonesVivos().length > seleccionPokemon)
+					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
+				if (aj.teclas.arriba == true){
+					seleccionPokemon = 3;
+				}else if(aj.teclas.dere == true) {
+					seleccionPokemon = 4;
+				}
+
+				if(aj.teclas.espacio) {
+
+					cambiarPokemon(getPokemonesVivos()[seleccionPokemon-1]);
+					inicializarValores();
+					
+					aj.stopSeleccion = false;
+					aj.teclas.aceptar = false;
+
+				}
+				break;
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
