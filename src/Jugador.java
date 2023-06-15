@@ -142,6 +142,8 @@ public class Jugador {
 		if(teclas.arriba == true || teclas.abajo == true ||
 				teclas.izqui == true || teclas.dere == true) {
 			
+			//aj.playSE(3);
+			
 			if(teclas.arriba == true) {
 				direccion = "arriba";
 			}
@@ -236,6 +238,8 @@ public class Jugador {
 			
 			//LABORATRIO
 			if (colisionEntrada1 == true) {
+				aj.stopMusic();
+				aj.playMusic(7);
 				aj.mapaActual = 1;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 22;
@@ -244,6 +248,8 @@ public class Jugador {
 
 			//CASA RIVAL
 			if (colisionEntrada2 == true) {
+				aj.stopMusic();
+				aj.playMusic(9);
 				aj.mapaActual = 2;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 19;
@@ -251,10 +257,13 @@ public class Jugador {
 			}
 			
 			if(colisionSalida1 == true || colisionSalidaPiso == true || colisionSalida3 == true || colisionSalida4 == true || colisionSalida5 == true || colisionSalida6 == true || colisionSalida8 == true || colisionSalida10 == true) {
+				aj.stopMusic();
 				
 				switch(aj.mapaActual) {
 				
 				case 1: // LABORATORIO
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 32;
 					MundoY = aj.tamPantalla * 199;
@@ -262,6 +271,8 @@ public class Jugador {
 					break;
 					
 				case 2: // CASA DEL RIVAL
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 36;
 					MundoY = aj.tamPantalla * 192;
@@ -269,6 +280,8 @@ public class Jugador {
 					break;
 					
 				case 3: // CASA DEL JUGADOR
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 26;
 					MundoY = aj.tamPantalla * 192;
@@ -276,6 +289,8 @@ public class Jugador {
 					break;
 					
 				case 4: // Pokemon CENTER
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 27;
 					MundoY = aj.tamPantalla * 132;
@@ -283,6 +298,8 @@ public class Jugador {
 					break;
 					
 				case 5: // POKEMON MALL
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 34;
 					MundoY = aj.tamPantalla * 127;
@@ -290,6 +307,8 @@ public class Jugador {
 					break;
 					
 				case 6: // POKEMON ESCUELA
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 25;
 					MundoY = aj.tamPantalla * 125;
@@ -297,6 +316,8 @@ public class Jugador {
 					break;
 					
 				case 7: // POKEMON Gimnasio
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 32;
 					MundoY = aj.tamPantalla * 116;
@@ -304,6 +325,8 @@ public class Jugador {
 					break;
 					
 				case 8: // POKEMON CENTER 2
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 17;
 					MundoY = aj.tamPantalla *35;
@@ -311,6 +334,8 @@ public class Jugador {
 					break;
 					
 				case 9: // TIENDA 2
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 31;
 					MundoY = aj.tamPantalla * 21;
@@ -318,6 +343,8 @@ public class Jugador {
 					break;
 					
 				case 10: // GIMNASIO 2
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 19;
 					MundoY = aj.tamPantalla * 21;
@@ -325,6 +352,8 @@ public class Jugador {
 					break;
 					
 				case 11: // MUSEO
+					aj.stopMusic();
+					aj.playMusic(0);
 					aj.mapaActual = 0;
 					MundoX = aj.tamPantalla * 20;
 					MundoY = aj.tamPantalla * 8;
@@ -343,6 +372,8 @@ public class Jugador {
 			
 			//CASA JUGADOR
 			if (colisionEntrada3 == true) {
+				aj.stopMusic();
+				aj.playMusic(10);
 				aj.mapaActual = 3;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 20;
@@ -360,6 +391,8 @@ public class Jugador {
 
 			//CENTRO POKEMON 1 - 4
 			if (colisionEntrada4 == true) {
+				aj.stopMusic();
+				aj.playMusic(8);
 				aj.mapaActual = 4;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 21;
@@ -368,6 +401,8 @@ public class Jugador {
 
 			//TIENDA 1
 			if (colisionEntrada5 == true) {
+				aj.stopMusic();
+				aj.playMusic(5);
 				aj.mapaActual = 5;
 				velocidad = 4;
 				MundoX = aj.tamPantalla * 20;
@@ -376,6 +411,8 @@ public class Jugador {
 
 			//ESCUELA 1
 			if (colisionEntrada6 == true) {
+				aj.stopMusic();
+				aj.playMusic(9);
 				velocidad = 4;
 				aj.mapaActual = 6;
 				MundoX = aj.tamPantalla * 22;
@@ -384,6 +421,8 @@ public class Jugador {
 
 			//GIMNASIO 1
 			if (colisionEntrada7 == true) {
+				aj.stopMusic();
+				aj.playMusic(6);
 				velocidad = 4;
 				aj.mapaActual = 7;
 				MundoX = aj.tamPantalla * 23;
@@ -392,6 +431,8 @@ public class Jugador {
 			
 			//CENTRO POKEMON 2
 			if (colisionEntrada8 == true) {
+				aj.stopMusic();
+				aj.playMusic(7);
 				velocidad = 4;
 				aj.mapaActual = 8;
 				MundoX = aj.tamPantalla * 21;
@@ -400,6 +441,8 @@ public class Jugador {
 
 			//TIENDA 2
 			if (colisionEntrada9 == true) {
+				aj.stopMusic();
+				aj.playMusic(5);
 				velocidad = 4;
 				aj.mapaActual = 9;
 				MundoX = aj.tamPantalla * 27;
@@ -408,6 +451,8 @@ public class Jugador {
 
 			//GIMNASIO 2
 			if (colisionEntrada10 == true) {
+				aj.stopMusic();
+				aj.playMusic(6);
 				velocidad = 4;
 				aj.mapaActual = 10;
 				MundoX = aj.tamPantalla * 23;
@@ -416,6 +461,8 @@ public class Jugador {
 			
 			//MUSEO
 			if (colisionEntrada11 == true) {
+				aj.stopMusic();
+				aj.playMusic(9);
 				velocidad = 4;
 				aj.mapaActual = 11;
 				MundoX = aj.tamPantalla * 23;

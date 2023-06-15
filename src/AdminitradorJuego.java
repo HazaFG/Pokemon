@@ -51,6 +51,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles(this);
+	Sound sound = new Sound();
 	Combate combate = new Combate(this, new Pikachu());
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
@@ -68,6 +69,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public void iniciarHiloJuego() {
 		hiloJuego = new Thread(this);
 		hiloJuego.start();
+		
+		playMusic(0);
 	}
 	
 	@Override
@@ -123,6 +126,22 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 			jugador.dibujar(g2);
 		}
 		g2.dispose();			
+	}
+	
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	
+	public void stopMusic(){
+		sound.stop();
+	}
+	
+	public void playSE(int i) {
+		
+		sound.setFile(i);
+		sound.play();
 	}
 	
 	public Pokemon pokemonRandom() {
