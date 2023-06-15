@@ -301,6 +301,7 @@ public void dibujar(Graphics2D g2) {
 								System.out.println("ok");
 								
 								//se manda al centro pokemon
+								curarPokemones();
 							}
 						}else {
 							//muere el enemigo
@@ -444,12 +445,14 @@ public void dibujar(Graphics2D g2) {
 			g2.drawString(""+vida,705,550);
 			g2.drawString(nombreAliado,510,530);
 			
+			g2.drawString(""+enemigo.maxPV,247,273);
+			g2.drawString(""+enemigo.stats[0],287,273);
 			g2.drawString(nombreEnemigo,60,255);
 			
 			Font font2 = new Font("Copperplate Gothic Bold", Font.BOLD, fontSize+4);
 	        g2.setFont(font2);
 			g2.drawString(""+nivelPokemonAliado,570,550);
-			g2.drawString(""+nivelPokemonEnemigo,125,275);
+			g2.drawString(""+enemigo.lvl,125,275);
 			
 			if (aj.stopCombate) {
 				g2.setColor(Color.BLACK);
@@ -1033,6 +1036,12 @@ public boolean huidaRand() {
 		escapar = false;
 	
 	return escapar;
+}
+
+public void curarPokemones() {
+    for (int i = 0; i < numeroDePokemones(); i++) {
+        aj.jugador.equipo[i].stats[0] = aj.jugador.equipo[i].maxPV;
+    }
 }
 
 public boolean atraparRand() {
