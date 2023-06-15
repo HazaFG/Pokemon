@@ -18,7 +18,42 @@ public class Jugador {
 	public String direccion;
 	public Rectangle hitBox;
 	public boolean ColisiOn = false;
+	
 	public boolean colisionHierva = false;
+	
+	public boolean colisionEntrada1 = false;
+	public boolean colisionSalida1 = false;
+	
+	public boolean colisionEntrada2 = false;
+	public boolean colisionSalida2 = false;
+	
+	public boolean colisionEntrada3 = false;
+	public boolean colisionSalida3 = false;
+	
+	public boolean colisionEntrada4 = false;
+	public boolean colisionSalida4 = false;
+	
+	public boolean colisionEntrada5 = false;
+	public boolean colisionSalida5 = false;
+	
+	public boolean colisionEntrada6 = false;
+	public boolean colisionSalida6 = false;
+	
+	public boolean colisionEntrada7 = false;
+	public boolean colisionSalida7 = false;
+	
+	public boolean colisionEntrada8 = false;
+	public boolean colisionSalida8 = false;
+	
+	public boolean colisionEntrada9 = false;
+	public boolean colisionSalida9 = false;
+	
+	public boolean colisionEntrada10 = false;
+	public boolean colisionSalida10 = false;
+	
+	public boolean colisionEntrada11 = false;
+	public boolean colisionSalida11 = false;
+	
 	public int hitBoxX,hitBoxY;
 	
 	Pokemon[] equipo = new Pokemon[6];
@@ -30,7 +65,7 @@ public class Jugador {
 	AdminitradorJuego aj;
 	Controles teclas;
 	SplashMenu splashM;
-	Combate combate; 
+	Combate combate;
 	
 	public Jugador(AdminitradorJuego aj, Controles teclas,Combate combate) {
 		
@@ -46,17 +81,27 @@ public class Jugador {
 		hitBoxX = hitBox.x;
 		hitBoxY = hitBox.y;
 		
-		//Pikachu pika = new Pikachu();
 		Snorlax snor = new Snorlax();
+		Machoke zumaya = new Machoke();
+		Koffing kof = new Koffing();
+		Rattata rat = new Rattata();
+		Pidgey pid = new Pidgey();
+		Pikachu pika = new Pikachu();
 		equipo[0] = snor;
+		equipo[1] = zumaya;
+		equipo[2] = kof;
+		equipo[3] = rat;
+		equipo[4] = pid;
+		equipo[5] = pika;
+		
 		
 		posicionBase();
 		getImagenJugador();
 	}
 	public void posicionBase() {
 		
-		MundoX = aj.tamPantalla * 26;
-		MundoY = aj.tamPantalla * 192;
+		MundoX = aj.tamPantalla * 27;
+		MundoY = aj.tamPantalla * 162;
 		velocidad = 4;
 		direccion = "abajo";
 		
@@ -78,6 +123,7 @@ public class Jugador {
 	}
 	
 	public void actualizar() {
+		
 		if (aj.estadoCombate == false) {
 			
 		if(teclas.arriba == true || teclas.abajo == true ||
@@ -109,9 +155,44 @@ public class Jugador {
 			
 			ColisiOn = false;
 			colisionHierva = false;
+			
+			colisionEntrada1 = false;
+			colisionSalida1 = false;
+			
+			colisionEntrada2 = false;
+			colisionSalida2 = false;
+			
+			colisionEntrada3 = false;
+			colisionSalida3 = false;
+			
+			colisionEntrada4 = false;
+			colisionSalida4 = false;
+			
+			colisionEntrada5 = false;
+			colisionSalida5 = false;
+			
+			colisionEntrada6 = false;
+			colisionSalida6 = false;
+			
+			colisionEntrada7 = false;
+			colisionSalida7 = false;
+			
+			colisionEntrada8 = false;
+			colisionSalida8 = false;
+			
+			colisionEntrada9 = false;
+			colisionSalida9 = false;
+			
+			colisionEntrada10 = false;
+			colisionSalida10 = false;
+			
+			colisionEntrada11 = false;
+			colisionSalida11 = false;
+			
 			aj.cColision.revisarTile(this);
 			
 			if(ColisiOn == false) {
+				
 				
 				switch(direccion) {
 				case "arriba":
@@ -130,9 +211,9 @@ public class Jugador {
 			}
 			
 			if (colisionHierva == true) {
-				
 				if (hiervaRand()) {	
 				combate.inicializarValores();
+				combate.setEnemigo(new Poliwag());
 				//combate.comenzarCombate();
 				aj.estadoCombate = true;
 //				if(combate.combate == true) {
@@ -140,14 +221,140 @@ public class Jugador {
 //				}
 				}
 			}
+			
+			//LABORATRIO
+			if (colisionEntrada1 == true) {
+				aj.mapaActual = 1;
+				MundoX = aj.tamPantalla * 10;
+				MundoY = aj.tamPantalla * 10;
+			} 
+			if(colisionSalida1 == true) {
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 120;
+				aj.mapaActual = 0;
+				
+			}
+			//CASA RIVAL
+			if (colisionEntrada2 == true) {
+				aj.mapaActual = 2;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 120;
+			}
+			if(colisionSalida2 == true) {
+				MundoX = aj.tamPantalla * 30;
+				MundoY = aj.tamPantalla * 110;
+				aj.mapaActual = 0;
+			}
+			//CASA JUGADOR
+			if (colisionEntrada3 == true) {
+				aj.mapaActual = 3;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			}
+			if(colisionSalida3 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 50;
+				MundoY = aj.tamPantalla * 100;
+			}
+			//CENTRO POKEMON 1
+			if (colisionEntrada4 == true) {
+				aj.mapaActual = 4;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			} 
+			if(colisionSalida4 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 20;
+				MundoY = aj.tamPantalla * 90;
+			}
+			//TIENDA 1
+			if (colisionEntrada5 == true) {
+				aj.mapaActual = 5;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			} 
+			if(colisionSalida5 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 40;
+				MundoY = aj.tamPantalla * 80;
+			}
+			//ESCUELA 1
+			if (colisionEntrada6 == true) {
+				aj.mapaActual = 6;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			} 	
+			if(colisionSalida6 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 70;
+				MundoY = aj.tamPantalla * 70;
+			}
+			//GIMNASIO 1
+			if (colisionEntrada7 == true) {
+				aj.mapaActual = 7;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			} 	
+			if(colisionSalida7 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 60;
+			}
+			//CENTRO POKEMON 2
+			if (colisionEntrada8 == true) {
+				aj.mapaActual = 8;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			}
+			if(colisionSalida8 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 50;
+			}
+			//TIENDA 2
+			if (colisionEntrada9 == true) {
+				aj.mapaActual = 9;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			}
+			if (colisionSalida9 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 40;
+			}
+			//GIMNASIO 2
+			if (colisionEntrada10 == true) {
+				aj.mapaActual = 10;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			} 	
+			if(colisionSalida10 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 30;
+			}
+			//MUSEO
+			if (colisionEntrada11 == true) {
+				aj.mapaActual = 11;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			} 	
+			if(colisionSalida11 == true) {
+				aj.mapaActual = 0;
+				MundoX = aj.tamPantalla * 27;
+				MundoY = aj.tamPantalla * 20;
+			}
+			
 		}
+		
 		}
 	}
 	
 	public boolean hiervaRand() {
-		int num = (int)Math.floor(Math.random()*100+1);
+//		int num = (int)Math.floor(Math.random()*100+1);
+		int num = (int)Math.floor(Math.random()*2+1);
 		System.out.println("Numero: "+num);
-		if (num == 10) {
+		if (num == 1) {
 			return true;
 		}
 		return false;

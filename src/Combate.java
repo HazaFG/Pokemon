@@ -15,11 +15,12 @@ import javax.swing.JLabel;
 public class Combate {
 	
 	AdminitradorJuego aj;
-	HiloCombate hiloCombate;
+	//HiloCombate hiloCombate;
 
 	Graphics2D g2;
 	
 	BufferedImage imagen,imagenPokemonAliado,imagenPokemonEnemigo;
+	BufferedImage imagenSeleccion1,imagenSeleccion2,imagenSeleccion3,imagenSeleccion4,imagenSeleccion5;
 	String nombreAliado,
 			nombreEnemigo;
 	
@@ -29,8 +30,12 @@ public class Combate {
 	
 	int seleccion = 1;
 	int seleccionAtaque = 1;
+	int seleccionPokemon = 1;
 	
 	Pokemon aliado;
+	
+	//pokemon que esta peleando
+	int pokemonEnBatalla = 0;
 	
 	String[] nombreMovimientosAliado = new String[4];
 	
@@ -59,25 +64,21 @@ public class Combate {
 	}
 	
 	public void inicializarValores() {
-		this.nombreAliado = aj.jugador.equipo[0].nombre;
-		this.vidaMax = aj.jugador.equipo[0].maxPV;
-		this.vida = aj.jugador.equipo[0].stats[0];
-		this.nivelPokemonAliado = aj.jugador.equipo[0].lvl;
-		this.aliado = aj.jugador.equipo[0];
+		this.nombreAliado = aj.jugador.equipo[pokemonEnBatalla].nombre;
+		this.vidaMax = aj.jugador.equipo[pokemonEnBatalla].maxPV;
+		this.vida = aj.jugador.equipo[pokemonEnBatalla].stats[0];
+		this.nivelPokemonAliado = aj.jugador.equipo[pokemonEnBatalla].lvl;
+		this.aliado = aj.jugador.equipo[pokemonEnBatalla];
 		
 		for (int i = 0; i < 4; i++) {
 			nombreMovimientosAliado[i] = aliado.movimientos[i].nombre;
 			maxPPMovimientosAliado[i] = aliado.movimientos[i].PP;
 			PPMovimientosAliado[i] = aliado.movimientos[i].PP;
 		}
-
-//			try {
-//				imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonAliado+"_aliado.png"));
-//				imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombrePokemonEnemigo+"_enemigo.png"));
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+	}
+	
+	public void cambiarPokemon(int cambio) {
+		pokemonEnBatalla = cambio;
 	}
 	
 	public void cambiarAString() {
@@ -102,7 +103,7 @@ public void dibujar(Graphics2D g2) {
 		inicializarValores();
 		
 		int fontSize = 18;
-		hiloCombate = new HiloCombate(aj);
+		//hiloCombate = new HiloCombate(aj);
 		
 		try {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
@@ -126,8 +127,7 @@ public void dibujar(Graphics2D g2) {
 				}
 				
 				if(aj.teclas.aceptar == true) {
-//					comenzarCombate();
-//					aj.teclas.aceptar = false;
+					
 					aj.stopCombate = true;
 					
 					if((aliado.stats[0] > 0 && enemigo.stats[0] > 0)) {
@@ -191,12 +191,112 @@ public void dibujar(Graphics2D g2) {
 								break;
 							}		
 							
-							aj.teclas.aceptar = true;
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}else {
+						
+						//si aliado muere
+						if(aliado.stats[0] <= 0) {
+							System.out.println("aliado muere");
 							
-							if (aj.teclas.cancelar)
-								aj.teclas.cancelar = true;
-								//aj.teclas.aceptar = false;
+							if(equipoVivo()) {
+								
+								//pantalla de seleccion de pokemon
+								imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_seleccion.png"));
+								
+								cambiarPokemon(1);
+								inicializarValores();
+							}else {
+								aj.estadoCombate = false;
+								seleccionAtaque = 1;
+								
+								aj.stopCombate = false;
+								aj.teclas.aceptar = false;
+								System.out.println("ok");
+							}
+						}else {
+							//muere el enemigo
+							aj.estadoCombate = false;
+							seleccionAtaque = 1;
 							
+							aj.stopCombate = false;
+							aj.teclas.aceptar = false;
+							System.out.println("ok");
+							
+						}
+					}
+					
+					//se presiona o
+					if(aj.teclas.cancelar) {
+						aj.stopCombate = false;
+						aj.teclas.aceptar = false;
+						System.out.println("ok");
+					}
+					
+				}
+				break;
+				/////////////////////////////////////////////////////////////////////
+			case 2:
+				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_pokemon.png"));
+				if (aj.teclas.abajo == true && aj.teclas.aceptar == false){
+					seleccion = 4;
+				}else if(aj.teclas.izqui == true && aj.teclas.aceptar == false) {
+					seleccion = 1;
+				}
+
+				if(aj.teclas.aceptar == true) {
+//					System.out.println(aj.teclas.aceptar);
+					//hacer menu para seleccionar a que pokemon se desea cambiar
+					//evitar que se pueda seleccionar al pokemon que ya esta peleando
+					
+					aj.stopSeleccion = true;
+					imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_seleccion.png"));
+					imagenSeleccion1  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[0].nombre+"_seleccion_1.png"));
+					imagenSeleccion2  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[1].nombre+"_seleccion_1.png"));
+					imagenSeleccion3  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[2].nombre+"_seleccion_1.png"));
+					imagenSeleccion4  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[3].nombre+"_seleccion_1.png"));
+					imagenSeleccion5  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[4].nombre+"_seleccion_1.png"));
+
+					if(aj.stopSeleccion) {
+
+						try {
+							switch(seleccionPokemon) {
+							case 1:
+								imagenSeleccion1  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[0].nombre+"_seleccion_1.png"));
+								if (aj.teclas.abajo == true){
+									seleccionPokemon = 3;
+								}else if(aj.teclas.dere == true) {
+									seleccionPokemon = 2;
+								}
+//
+//								System.out.println(seleccionPokemon);
+								
+								if(aj.teclas.espacio) {
+
+									cambiarPokemon(seleccionPokemon);
+									inicializarValores();
+
+								}
+								break;
+							case 2:
+								imagenSeleccion1  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[0].nombre+"_seleccion_2.png"));
+								if (aj.teclas.abajo == true){
+									seleccionPokemon = 4;
+								}else if(aj.teclas.izqui == true) {
+									seleccionPokemon = 1;
+								}
+
+								if(aj.teclas.espacio) {
+
+									cambiarPokemon(seleccionPokemon);
+									inicializarValores();
+
+								}
+								break;
+
+							}
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -204,23 +304,32 @@ public void dibujar(Graphics2D g2) {
 					}
 					
 					if(aj.teclas.cancelar) {
-						aj.stopCombate = false;
+//						System.out.println("ok");
+						aj.stopSeleccion = false;
 						aj.teclas.aceptar = false;
 					}
+					/*
+					//cambiarPokemon(1);
+					inicializarValores();
 					
-				}else {
-					combate = false;
-					//System.out.println(combate);
+					//aqui ataca el pokemon enemigo
+					ataqueEnemigo(aliado, enemigo);
+					
+					//si aliado muere
+					if(aliado.stats[0] <= 0) {
+						System.out.println("aliado muere");
+						
+						if(equipoVivo()) {
+							
+							//pantalla de seleccion de pokemon
+							cambiarPokemon(1);
+							inicializarValores();
+						}else {
+							aj.estadoCombate = false;
+							seleccionAtaque = 1;
+						}
+					}*/
 				}
-				break;
-			case 2:
-				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_pokemon.png"));
-				if (aj.teclas.abajo == true){
-					seleccion = 4;
-				}else if(aj.teclas.izqui == true) {
-					seleccion = 1;
-				}
-				
 				break;
 			case 3:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_objetos.png"));
@@ -229,6 +338,44 @@ public void dibujar(Graphics2D g2) {
 				}else if(aj.teclas.dere == true) {
 					seleccion = 4;
 				}
+				
+				if(aj.teclas.aceptar == true) {
+					
+					//comprueba si el equipo del jugador ya esta lleno
+					if(numeroDePokemones() < 6) {
+						if (false) {
+							//lanza la pokeball y captura
+							aj.jugador.equipo[numeroDePokemones()] = enemigo;
+							System.out.println("pokemon capturado: "+aj.jugador.equipo[numeroDePokemones()-1]);
+							aj.estadoCombate = false;
+							seleccionAtaque = 1;
+							System.out.println("numero de pokemones: "+numeroDePokemones());
+						}else {
+							//lanza la pokeball y falla
+							System.out.println("no se atrapo al pokemon");
+							//aqui ataca el pokemon enemigo
+							ataqueEnemigo(aliado, enemigo);
+							
+							//si aliado muere
+							if(aliado.stats[0] <= 0) {
+								System.out.println("aliado muere");
+								
+								if(equipoVivo()) {
+									
+									//pantalla de seleccion de pokemon
+									cambiarPokemon(1);
+									inicializarValores();
+								}else {
+									aj.estadoCombate = false;
+									seleccionAtaque = 1;
+								}
+							}
+						}
+					}else {
+						System.out.println("el equipo ya esta lleno");
+					}
+				}
+				
 				break;
 			case 4:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_huida.png"));
@@ -239,14 +386,32 @@ public void dibujar(Graphics2D g2) {
 				}
 					
 				if(aj.teclas.aceptar == true) {
-					if (huidaRand()) {
+					if (false) {
 						aj.estadoCombate = false;
+						seleccionAtaque = 1;
 					}else {
-						System.out.println("No se pudo jaja");
+						//aqui ataca el pokemon enemigo
+						ataqueEnemigo(aliado, enemigo);
+						
+						//si aliado muere
+						if(aliado.stats[0] <= 0) {
+							System.out.println("aliado muere");
+							
+							if(equipoVivo()) {
+								
+								//pantalla de seleccion de pokemon
+								cambiarPokemon(1);
+								inicializarValores();
+							}else {
+								aj.estadoCombate = false;
+								seleccionAtaque = 1;
+							}
+						}
 					}
 				}
 				break;
-			}			
+			}	
+			
 			g2.drawImage(imagen, 0, 580, 800, 220, null);
 			
 			
@@ -308,6 +473,17 @@ public void dibujar(Graphics2D g2) {
 				}
 				g2.drawString(aliado.movimientos[seleccionAtaque-1].tipo, 640,760);
  
+			}
+			
+			//SE DIBUJA LA SELECCIÓN DE POKEMONES
+			if(aj.stopSeleccion) {
+				g2.drawImage(imagen, 0, 390, 800, 410, null);
+				g2.drawImage(imagenSeleccion1, 50,420,325,105,null);
+				g2.drawImage(imagenSeleccion2, 50,540,325,105,null);
+				g2.drawImage(imagenSeleccion3, 50,660,325,105,null);
+				g2.drawImage(imagenSeleccion4, 430,420,325,105,null);
+				g2.drawImage(imagenSeleccion5, 430,540,325,105,null);
+				
 			}
 			
 			
@@ -438,6 +614,36 @@ public void ataqueEnemigo(Pokemon aliado, Pokemon enemigo) {
 	System.out.println("Vida de "+aliado.nombre+": "+aliado.recibirDaño(enemigo.movimientos[ataque].calcularDaño(enemigo, aliado)));
 
 
+}
+
+public int numeroDePokemones() {
+	int numeroDePokemones = 0;
+
+	for (int i = 0; i < aj.jugador.equipo.length; i++) {
+		if(aj.jugador.equipo[i] != null)
+			numeroDePokemones++;
+	}
+	
+	return numeroDePokemones;
+}
+
+public boolean equipoVivo() {
+	boolean equipoVivo = false;
+	
+	for (int i = 0; i < numeroDePokemones(); i++) {
+		if(aj.jugador.equipo[i].stats[0] > 0) {
+			equipoVivo = true;
+			break;
+		}
+	}
+	
+	return equipoVivo;
+	
+}
+
+public void setEnemigo(Pokemon enemigo) {
+	this.enemigo = enemigo;
+	this.nombreEnemigo = enemigo.nombre;
 }
 
 }

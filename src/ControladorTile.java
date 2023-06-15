@@ -10,19 +10,28 @@ public class ControladorTile {
 	
 	AdminitradorJuego aj;
 	public Tile[] tile;
-	public int numTileMap[][];
+	public int numTileMap[][][];
 
-	
-	
 	public ControladorTile(AdminitradorJuego aj) {
 		
 		this.aj = aj;
 		
 		tile = new Tile[800];
-		numTileMap = new int[aj.mundoCol][aj.mundoFil];
+		numTileMap = new int[aj.maximoMapa][aj.mundoCol][aj.mundoFil];
 		
 		cargarTile();
-		cargarMapa("/mapas/mapa1.txt");
+		cargarMapa("/mapas/mapa1.txt", 0);
+		cargarMapa("/mapas/laboratorio.txt", 1);
+		cargarMapa("/mapas/casaRival.txt", 2);
+		cargarMapa("/mapas/casaJugador.txt", 3);
+		cargarMapa("/mapas/centroPokemon1.txt", 4);
+		cargarMapa("/mapas/tienda1.txt", 5);
+		cargarMapa("/mapas/escuela1.txt", 6);
+		cargarMapa("/mapas/gimnasio1.txt", 7);
+		cargarMapa("/mapas/centroPokemon2.txt", 8);
+		cargarMapa("/mapas/tienda2.txt", 9);
+		cargarMapa("/mapas/gimnasio2.txt", 10);
+		cargarMapa("/mapas/museo.txt", 11);
 	}
 	
 	public void cargarTile() {
@@ -182,7 +191,7 @@ public class ControladorTile {
 			
 			tile[38] = new Tile();
 			tile[38].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/38.png"));
-			tile[38].colision = true;
+			tile[38].colisionEntrada11 = true;
 			
 			tile[39] = new Tile();
 			tile[39].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/39.png"));
@@ -392,7 +401,7 @@ public class ControladorTile {
 			
 			tile[94] = new Tile();
 			tile[94].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/94.png"));
-			tile[94].colision = true;
+			tile[94].colisionEntrada10 = true;
 			
 			tile[95] = new Tile();
 			tile[95].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/95.png"));
@@ -600,7 +609,7 @@ public class ControladorTile {
 			
 			tile[147] = new Tile();
 			tile[147].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/147.png"));
-			tile[147].colision = true;
+			tile[147].colisionEntrada9 = true;
 			
 			tile[148] = new Tile();
 			tile[148].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/148.png"));
@@ -1294,7 +1303,7 @@ public class ControladorTile {
 			
 			tile[320] = new Tile();
 			tile[320].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/320.png"));
-			tile[320].colision = true;
+			tile[320].colisionEntrada8 = true;
 			
 			tile[321] = new Tile();
 			tile[321].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/321.png"));
@@ -1454,7 +1463,7 @@ public class ControladorTile {
 			
 			tile[361] = new Tile();
 			tile[361].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/361.png"));
-			tile[361].colision = true;
+			tile[361].colisionEntrada5 = true;
 			
 			tile[362] = new Tile();
 			tile[362].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/362.png"));
@@ -1534,7 +1543,7 @@ public class ControladorTile {
 
 			tile[381] = new Tile();
 			tile[381].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/381.png"));
-			tile[381].colision = true;
+			tile[381].colisionEntrada7 = true;
 
 			tile[382] = new Tile();
 			tile[382].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/382.png"));
@@ -1909,7 +1918,7 @@ public class ControladorTile {
 
 			tile[474] = new Tile();
 			tile[474].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/474.png"));
-			tile[474].colision = true;
+			tile[474].colisionEntrada3 = true;
 
 			tile[475] = new Tile();
 			tile[475].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/475.png"));
@@ -1989,7 +1998,7 @@ public class ControladorTile {
 
 			tile[494] = new Tile();
 			tile[494].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/494.png"));
-			tile[494].colision = true;
+			tile[494].colisionEntrada2 = true;
 
 			tile[495] = new Tile();
 			tile[495].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/495.png"));
@@ -2140,7 +2149,7 @@ public class ControladorTile {
 			
 			tile[533] = new Tile();
 			tile[533].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/533.png"));
-			tile[533].colision = true;
+			tile[533].colisionEntrada6 = true;
 			
 			tile[534] = new Tile();
 			tile[534].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/534.png"));
@@ -2176,7 +2185,7 @@ public class ControladorTile {
 		
 			tile[542] = new Tile();
 			tile[542].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/542.png"));
-			tile[542].colision = true;
+			tile[542].colisionEntrada5 = true;
 			
 			tile[543] = new Tile();
 			tile[543].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/543.png"));
@@ -2272,7 +2281,7 @@ public class ControladorTile {
 			
 			tile[566] = new Tile();
 			tile[566].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/566.png"));
-			tile[566].colision = true;
+			tile[566].colisionEntrada4 = true;
 			
 			tile[567] = new Tile();
 			tile[567].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/567.png"));
@@ -2476,8 +2485,9 @@ public class ControladorTile {
 
 			tile[643] = new Tile();
 			tile[643].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/643.png"));
-			tile[643].colision = true;
-
+			//tile[643].colision = true;
+			tile[643].colisionEntrada1 = true;
+					
 			tile[644] = new Tile();
 			tile[644].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/644.png"));
 			tile[644].colision = true;
@@ -2600,7 +2610,7 @@ public class ControladorTile {
 
 			tile[674] = new Tile();
 			tile[674].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/674.png"));
-			tile[674].colision = true;
+			tile[674].colisionEntrada3 = true;
 			
 			tile[675] = new Tile();
 			tile[675].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/675.png"));
@@ -2617,6 +2627,25 @@ public class ControladorTile {
 			tile[678] = new Tile();
 			tile[678].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/678.png"));
 			tile[678].colision = true;
+			
+			tile[679] = new Tile();
+			tile[679].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/679.png"));
+			//tile[679].colision = true;
+			tile[679].colisionSalida1 = true;
+			tile[679].colisionSalida2 = true;
+			tile[679].colisionSalida3 = true;
+			tile[679].colisionSalida4 = true;
+			tile[679].colisionSalida5 = true;
+			tile[679].colisionSalida6 = true;
+			tile[679].colisionSalida7 = true;
+			tile[679].colisionSalida8 = true;
+			tile[679].colisionSalida9 = true;
+			tile[679].colisionSalida10 = true;
+			tile[679].colisionSalida11 = true;
+			
+			tile[680] = new Tile();
+			tile[680].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/680.png"));
+			tile[680].colision = true;
 
 				
 		}catch(IOException e) {
@@ -2624,7 +2653,7 @@ public class ControladorTile {
 		}	
 	}
 	
-	public void cargarMapa(String rutaArchivo) {
+	public void cargarMapa(String rutaArchivo, int mapa) {
 		try {
 			//EXPORTA EL MAPA
 			InputStream mapa1 = getClass().getResourceAsStream(rutaArchivo);
@@ -2644,7 +2673,7 @@ public class ControladorTile {
 					
 					int num = Integer.parseInt(numeros[col]);
 					
-					numTileMap[col][fil] = num;
+					numTileMap[mapa][col][fil] = num;
 					col++;
 				}
 				if(col == aj.mundoCol) {
@@ -2666,7 +2695,7 @@ public class ControladorTile {
 		
 		while(MundoCol < aj.mundoCol && MundoFil < aj.mundoFil) {
 			
-			int numTile = numTileMap[MundoCol][MundoFil];
+			int numTile = numTileMap[aj.mapaActual][MundoCol][MundoFil];
 			
 			int mundoX = MundoCol * aj.tamPantalla;
 			int mundoY = MundoFil * aj.tamPantalla;

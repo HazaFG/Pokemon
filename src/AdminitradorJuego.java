@@ -10,29 +10,34 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class AdminitradorJuego extends JPanel implements Runnable{
+
 	
 	//CONFIGURACIONES DE PANTALLA
-		final int escalaOriginal = 7;
-		final int escala = 5;
+	final int escalaOriginal = 7;
+	final int escala = 5;
 		
-		public final int tamPantalla = escalaOriginal * escala; //25x25 CUADROS
-		public final int maxColPantalla = 30;
-		public final int maxFilPantalla = 20;
-		public int anchoPantalla = tamPantalla * maxColPantalla; // 1015 PIXELES
-		public int alturaPantalla = tamPantalla * maxFilPantalla; // 540 PIXELES
+	public final int tamPantalla = escalaOriginal * escala; //25x25 CUADROS
+	public final int maxColPantalla = 30;
+	public final int maxFilPantalla = 20;
+	public int anchoPantalla = tamPantalla * maxColPantalla; // 1015 PIXELES
+	public int alturaPantalla = tamPantalla * maxFilPantalla; // 540 PIXELES
 	
-	
+	//FPS
 	int FPS = 60;
 	
-	//CONFIGURACIÓN DE MUNDO
+	//CAMBIO DE MAPA
+	public final int maximoMapa = 15;
+	public int mapaActual = 0;	
 	
+	//CONFIGURACIÓN DE MUNDO
 	public final int mundoFil = 800; //Las originales serán 83
 	public final int mundoCol = 43; // y 43
 	public final int maximoAnchoMundo = mundoCol * tamPantalla;
 	public final int maximoAltoMundo = mundoFil * tamPantalla;
 	
-	public boolean estadoCombate = false;
-	public boolean stopCombate = false;
+	public boolean estadoCombate = true;
+	public boolean stopCombate 	 = false;
+	public boolean stopSeleccion = false;
 	JButton btn = new JButton();
 	
 	ControladorTile ControladorT = new ControladorTile(this);
