@@ -95,9 +95,9 @@ public class Jugador {
 		getImagenJugador();
 	}
 	public void posicionBase() {
-		MundoX = aj.tamPantalla * 31; // 27
-		MundoY = aj.tamPantalla * 21; // 199
-		velocidad = 10;
+		MundoX = aj.tamPantalla * 27; // 27
+		MundoY = aj.tamPantalla * 199; // 199
+		velocidad = 5;
 		direccion = "abajo";
 	}
 	
@@ -309,6 +309,13 @@ public class Jugador {
 					velocidad = 5;
 					break;
 					
+				case 11: // MUSEO
+					aj.mapaActual = 0;
+					MundoX = aj.tamPantalla * 20;
+					MundoY = aj.tamPantalla * 8;
+					velocidad = 5;
+					break;
+					
 				case 12: // SEGUNDO PISO
 					aj.mapaActual = 3;
 					MundoX = aj.tamPantalla * 25;
@@ -391,13 +398,13 @@ public class Jugador {
 				MundoX = aj.tamPantalla * 23;
 				MundoY = aj.tamPantalla * 19;
 			} 
-
+			
 			//MUSEO
 			if (colisionEntrada11 == true) {
 				velocidad = 4;
 				aj.mapaActual = 11;
-				MundoX = aj.tamPantalla * 27;
-				MundoY = aj.tamPantalla * 20;
+				MundoX = aj.tamPantalla * 23;
+				MundoY = aj.tamPantalla * 19;
 			} 	
 		}
 	}
