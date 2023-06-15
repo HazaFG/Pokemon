@@ -38,7 +38,10 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public boolean estadoCombate = true;
 	public boolean stopCombate 	 = false;
 	public boolean stopSeleccion = false;
-	JButton btn = new JButton();
+	public boolean stopAtaque = false;
+	
+	public int pokemonAliadoX = 100, pokemonAliadoY = 380;
+	public int pokemonEnemigoX = 500, pokemonEnemigoY = 300;
 	
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles(this);

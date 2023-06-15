@@ -15,7 +15,8 @@ import javax.swing.JLabel;
 public class Combate {
 	
 	AdminitradorJuego aj;
-	//HiloCombate hiloCombate;
+	HiloCombate hiloCombate;
+	HiloAtaques hiloAtaques;
 
 	Graphics2D g2;
 	
@@ -27,6 +28,9 @@ public class Combate {
 	int nivelPokemonAliado = 1,nivelPokemonEnemigo = 1;
 	int vidaMax;
 	int vida;
+	
+	int turno = 0;
+	int aux = 0;
 	
 	int seleccion = 1;
 	int seleccionAtaque = 1;
@@ -103,7 +107,7 @@ public void dibujar(Graphics2D g2) {
 		inicializarValores();
 		
 		int fontSize = 18;
-		//hiloCombate = new HiloCombate(aj);
+		hiloCombate = new HiloCombate(aj);
 		
 		try {
 			imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Fondo.png"));
@@ -113,10 +117,63 @@ public void dibujar(Graphics2D g2) {
 			imagenPokemonAliado  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombreAliado+"_aliado.png"));
 			imagenPokemonEnemigo = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+nombreEnemigo+"_enemigo.png"));
 			
-			g2.drawImage(imagenPokemonAliado, 100, 380, 200, 200, null);
+			//ATAQUES
+			if (!aj.stopAtaque) {
+				if (enemigo.stats[5] > enemigo.stats[5]) {
+					 turno = 2;
+				}else {
+					turno = 1;
+				}
+			}
+			else {
+				
+			if(aj.pokemonEnemigoX > 200 && turno == 2) {
+				aj.pokemonEnemigoX -= 30;
+				aj.pokemonEnemigoY += 15;
+			}else if(turno == 2){
+				aj.pokemonEnemigoX = 500;
+				aj.pokemonEnemigoY = 300;
+				if (aux == 0) {
+					aux++;
+					turno = 1;
+				}else {
+					aux = 0;
+					aj.stopAtaque = false;
+					System.out.println("false 1");
+				}
+			}
 			
-			g2.drawImage(imagenPokemonEnemigo, 500, 300, 150, 150, null);
+				
+			if(aj.pokemonAliadoX < 200 && turno == 1) {
+				aj.pokemonAliadoX += 30;
+				aj.pokemonAliadoY -= 30;
+			}else if (turno  == 1){
+				aj.pokemonAliadoX = 100;
+				aj.pokemonAliadoY = 380;
+				if (aux == 0) {
+					aux++;
+					turno = 2;
+				}else {
+					aux = 0;
+					aj.stopAtaque = false;
+					System.out.println("false 2");
+				}
+			}
+			}
 			
+			
+			//JAJAJA SE MUERE
+//			if(aj.stopAtaque = true) {
+//				aj.pokemonAliadoX += 1;
+//				aj.pokemonAliadoY -= 1;
+//			}else {
+//				aj.pokemonAliadoX += 100;
+//				aj.pokemonAliadoY += 380;
+//			}
+				
+			g2.drawImage(imagenPokemonAliado, aj.pokemonAliadoX, aj.pokemonAliadoY, 200, 200, null);
+			
+			g2.drawImage(imagenPokemonEnemigo, aj.pokemonEnemigoX, aj.pokemonEnemigoY, 150, 150, null);
 			switch(seleccion) {
 			case 1:
 				imagen  = ImageIO.read(getClass().getResourceAsStream("/Batalla/Menu_ataque.png"));
@@ -146,6 +203,7 @@ public void dibujar(Graphics2D g2) {
 								if(aj.teclas.espacio) {
 
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
 
 								}
 								break;
@@ -160,6 +218,7 @@ public void dibujar(Graphics2D g2) {
 								if(aj.teclas.espacio) {
 
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
 
 								}
 								break;
@@ -173,6 +232,8 @@ public void dibujar(Graphics2D g2) {
 								
 								if(aj.teclas.espacio) {
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
+									
 								}
 								break;
 							case 4:
@@ -186,6 +247,7 @@ public void dibujar(Graphics2D g2) {
 								if(aj.teclas.espacio) {
 
 									ataques(aliado, enemigo, seleccionAtaque);
+									aj.stopAtaque=true;
 
 								}
 								break;
@@ -581,6 +643,7 @@ public void ataques(Pokemon aliado, Pokemon enemigo, int seleccion) {
 		System.out.println("Aliado ataca primero");
 
 		System.out.println("Vida de "+enemigo.nombre+": "+enemigo.recibirDaño(aliado.movimientos[seleccion-1].calcularDaño(aliado, enemigo)));
+		
 		if(enemigo.stats[0] <= 0) {
 			System.out.println("El combate acaba, gana: "+aliado.nombre);
 		}else {
@@ -601,6 +664,10 @@ public void ataques(Pokemon aliado, Pokemon enemigo, int seleccion) {
 
 			if(enemigo.stats[0] <= 0) {
 				System.out.println("El combate acaba, gana: "+aliado.nombre);
+				aj.pokemonAliadoX = 100;
+				aj.pokemonAliadoY = 380;
+				aj.pokemonEnemigoX = 500;
+				aj.pokemonEnemigoY = 300;
 			}
 		}
 	}
