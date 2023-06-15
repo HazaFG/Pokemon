@@ -11,6 +11,7 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 public class Combate {
 	
@@ -72,9 +73,9 @@ public class Combate {
 		this.aliado = aj.jugador.equipo[pokemonEnBatalla];
 		
 		for (int i = 0; i < 4; i++) {
-			nombreMovimientosAliado[i] = aliado.movimientos[i].nombre;
-			maxPPMovimientosAliado[i] = aliado.movimientos[i].PP;
-			PPMovimientosAliado[i] = aliado.movimientos[i].PP;
+			this.nombreMovimientosAliado[i] = aliado.movimientos[i].nombre;
+			this.maxPPMovimientosAliado[i] = aliado.movimientos[i].PP;
+			this.PPMovimientosAliado[i] = aliado.movimientos[i].PP;
 		}
 	}
 	
@@ -212,7 +213,7 @@ public void dibujar(Graphics2D g2) {
 						if(aliado.stats[0] <= 0) {
 
 							System.out.println("aliado muere");
-							
+							aj.stopCombate = false;
 							if(equipoVivo()) {
 								
 								//pantalla de seleccion de pokemon
@@ -280,6 +281,8 @@ public void dibujar(Graphics2D g2) {
 						//rand
 						if (false) {
 							//lanza la pokeball y captura
+							
+							
 							aj.jugador.equipo[numeroDePokemones()] = enemigo;
 							System.out.println("pokemon capturado: "+aj.jugador.equipo[numeroDePokemones()-1]);
 							aj.estadoCombate = false;
@@ -566,8 +569,8 @@ public int numeroDePokemonesVivos() {
 
 	for (int i = 0; i < aj.jugador.equipo.length; i++) {
 		if(aj.jugador.equipo[i] != null)
-			if(aj.jugador.equipo[i].stats[0] > 0)
-			numeroDePokemones++;
+			if(aj.jugador.equipo[i].stats[0] > 0) {
+			numeroDePokemones++; System.out.println(aj.jugador.equipo[i]);}
 	}
 	
 	return numeroDePokemones;
@@ -578,7 +581,8 @@ public boolean equipoVivo() {
 	
 	for (int i = 0; i < numeroDePokemones(); i++) {
 		if(aj.jugador.equipo[i].stats[0] > 0) {
-			equipoVivo = true;
+			if(!aj.jugador.equipo[i].equals(aliado))
+				equipoVivo = true;
 			break;
 		}
 	}
@@ -599,15 +603,17 @@ public void mostrarEquipo() {
 	}
 	
 	int posicion = 0;
-	for (int i = 0; i < numeroDePokemonesVivos(); i++) {
+	for (int i = 0; i < numeroDePokemones(); i++) {
 		if(!aj.jugador.equipo[i].equals(aliado)) {
-			try {	
-				imagenSeleccion[posicion++]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[i].nombre+"_seleccion_1.png"));
-				//System.out.println(aj.jugador.equipo[i].nombre);
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(aj.jugador.equipo[i].stats[0] > 0) {
+				try {	
+					imagenSeleccion[posicion++]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+aj.jugador.equipo[i].nombre+"_seleccion_1.png"));
+					//System.out.println(aj.jugador.equipo[i].nombre);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -616,10 +622,13 @@ public void mostrarEquipo() {
 public Pokemon[] getPokemonesVivos() {
 	Pokemon[] pokemones = new Pokemon[numeroDePokemonesVivos()];
 	
+	System.out.println("pokemones: "+numeroDePokemones());
+	
 	int posicion = 0;
-	for (int i = 0; i < numeroDePokemonesVivos(); i++) {
+	for (int i = 0; i < numeroDePokemones(); i++) {
 		if(!aj.jugador.equipo[i].equals(aliado)) {
-			pokemones[posicion++] = aj.jugador.equipo[i];
+			if(aj.jugador.equipo[i].stats[0] > 0)
+				pokemones[posicion++] = aj.jugador.equipo[i];
 		}
 	}
 	
@@ -638,6 +647,9 @@ public void menuEquipo() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
+	if(!equipoVivo())
+		System.out.println("no tenes poto");
 	
 	mostrarEquipo();
 	
@@ -800,11 +812,11 @@ public void menuEquipoSinDaño() {
 	mostrarEquipo();
 	
 	if(aj.stopSeleccion) {
-
+		
 		try {
 			switch(seleccionPokemon) {
 			case 1:
-				if (getPokemonesVivos().length > seleccionPokemon)
+				if (getPokemonesVivos().length >= seleccionPokemon)
 					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
 				
 				if (aj.teclas.abajo == true){
@@ -826,7 +838,7 @@ public void menuEquipoSinDaño() {
 				}
 				break;
 			case 2:
-				if (getPokemonesVivos().length > seleccionPokemon)
+				if (getPokemonesVivos().length >= seleccionPokemon)
 					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
 				
 				if (aj.teclas.abajo == true){
@@ -846,7 +858,7 @@ public void menuEquipoSinDaño() {
 				}
 				break;
 			case 3:
-				if (getPokemonesVivos().length > seleccionPokemon)
+				if (getPokemonesVivos().length >= seleccionPokemon)
 					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
 				
 				if (aj.teclas.abajo == true){
@@ -868,7 +880,7 @@ public void menuEquipoSinDaño() {
 				}
 				break;
 			case 4:
-				if (getPokemonesVivos().length > seleccionPokemon)
+				if (getPokemonesVivos().length >= seleccionPokemon)
 					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
 				
 				if (aj.teclas.abajo == true){
@@ -890,7 +902,7 @@ public void menuEquipoSinDaño() {
 				}
 				break;
 			case 5:
-				if (getPokemonesVivos().length > seleccionPokemon)
+				if (getPokemonesVivos().length >= seleccionPokemon)
 					imagenSeleccion[seleccionPokemon-1]  = ImageIO.read(getClass().getResourceAsStream("/Batalla/"+getPokemonesVivos()[seleccionPokemon-1].nombre+"_seleccion_2.png"));
 				if (aj.teclas.arriba == true){
 					seleccionPokemon = 3;
@@ -918,7 +930,9 @@ public void menuEquipoSinDaño() {
 	
 	if(aj.teclas.cancelar) {
 //		System.out.println("ok");
+		cambiarPokemon(getPokemonesVivos()[0]);
 		aj.stopSeleccion = false;
+		aj.estadoCombate = false;
 		aj.teclas.aceptar = false;
 	}
 	
